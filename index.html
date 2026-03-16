@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIVA BUYER ZONE</title>
+    <title>FAST NIVA SELL</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -35,6 +35,302 @@
         }
         .send-box {
             background: #1E2333;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+        .send-label {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .send-id {
+            background: #2A2F3F;
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .id-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        .copy-btn {
+            background: #00ff88;
+            color: #0B0E1A;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .form-input {
+            width: 100%;
+            background: #1E2333;
+            border: 1px solid #2A2F3F;
+            padding: 15px;
+            border-radius: 15px;
+            color: white;
+            font-size: 16px;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #00ff88;
+        }
+        .rate-box {
+            background: #1E2333;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 25px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .rate-info {
+            text-align: center;
+        }
+        .rate-label {
+            color: #888;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        .rate-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        .fee-value {
+            font-size: 16px;
+            color: #ff4444;
+        }
+        .total-value {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .next-btn {
+            background: linear-gradient(90deg, #00ff88, #00cc66);
+            color: #0B0E1A;
+            border: none;
+            padding: 20px;
+            border-radius: 50px;
+            width: 100%;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .next-btn:active {
+            transform: scale(0.95);
+        }
+        .note {
+            color: #888;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-btn {
+            background: transparent;
+            color: #888;
+            border: 1px solid #2A2F3F;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ব্যাক বাটন -->
+        <button class="back-btn" onclick="goBack()">
+            ← ব্যাক টু হোম
+        </button>
+
+        <!-- হেডার -->
+        <div class="header">NIVA BUYER ZONE</div>
+        <div class="sub-header">Sell Niva Coin. Enter your details carefully before submitting.</div>
+
+        <!-- Send Coins Section -->
+        <div class="send-box">
+            <div class="send-label">📤 SEND COINS TO THIS ID</div>
+            <div class="send-id">
+                <span class="id-text" id="walletId">niva_buyer_zone_1</span>
+                <button class="copy-btn" onclick="copyToClipboard()">📋 COPY ID</button>
+            </div>
+        </div>
+
+        <!-- ফর্ম সেকশন -->
+        <div class="form-group">
+            <label class="form-label">💰 Amount (Min 10000)</label>
+            <input type="number" class="form-input" id="amount" placeholder="Enter amount" min="10000" oninput="calculateTotal()">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">👤 Sender Username</label>
+            <input type="text" class="form-input" id="username" placeholder="@username">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">🏦 Bkash</label>
+            <input type="text" class="form-input" id="bkash" placeholder="Bkash number">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📱 Payment Number</label>
+            <input type="text" class="form-input" id="paymentNumber" placeholder="Your payment number">
+        </div>
+
+        <!-- রেট সেকশন -->
+        <div class="rate-box">
+            <div class="rate-info">
+                <div class="rate-label">Applied Rate</div>
+                <div class="rate-value" id="appliedRate">3₺</div>
+            </div>
+            <div class="rate-info">
+                <div class="rate-label">FEE</div>
+                <div class="fee-value" id="fee">-5₺</div>
+            </div>
+            <div class="rate-info">
+                <div class="rate-label">TOTAL</div>
+                <div class="total-value" id="total">0.00 ₺</div>
+            </div>
+        </div>
+
+        <!-- নেক্সট বাটন -->
+        <button class="next-btn" onclick="nextStep()">
+            Next Step →
+        </button>
+
+        <div class="note">
+            ⚠️ দয়া করে সঠিক তথ্য দিন। কোনো ভুলের দায় নেওয়া হবে না।
+        </div>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        
+        // ওয়েব অ্যাপ রেডি করা
+        tg.ready();
+        tg.expand();
+        
+        // হ্যাপটিক ফিডব্যাক
+        const haptic = tg.HapticFeedback;
+
+        // কপি টু ক্লিপবোর্ড ফাংশন
+        function copyToClipboard() {
+            const walletId = document.getElementById('walletId').textContent;
+            
+            // টেম্পোরারি ইনপুট তৈরি করে কপি করা
+            const tempInput = document.createElement('input');
+            tempInput.value = walletId;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            
+            // হ্যাপটিক ফিডব্যাক
+            haptic.impactOccurred('medium');
+            
+            // টুলটিপ দেখানো
+            tg.showAlert('✅ ID কপি করা হয়েছে!');
+        }
+
+        // টোটাল ক্যালকুলেট
+        function calculateTotal() {
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            const rate = 3; // 3₺ fixed rate
+            const fee = 5; // 5₺ fee
+            
+            if (amount >= 10000) {
+                const total = (amount * rate) - fee;
+                document.getElementById('total').textContent = total.toFixed(2) + ' ₺';
+            } else {
+                document.getElementById('total').textContent = '0.00 ₺';
+            }
+        }
+
+        // নেক্সট স্টেপ ফাংশন
+        function nextStep() {
+            const amount = document.getElementById('amount').value;
+            const username = document.getElementById('username').value;
+            const bkash = document.getElementById('bkash').value;
+            const paymentNumber = document.getElementById('paymentNumber').value;
+
+            // ভ্যালিডেশন
+            if (!amount || amount < 10000) {
+                tg.showAlert('⚠️ দয়া করে সঠিক পরিমাণ দিন (ন্যূনতম 10000)');
+                return;
+            }
+            if (!username) {
+                tg.showAlert('⚠️ দয়া করে আপনার ইউজারনেম দিন');
+                return;
+            }
+            if (!bkash) {
+                tg.showAlert('⚠️ দয়া করে বিকাশ নাম্বার দিন');
+                return;
+            }
+            if (!paymentNumber) {
+                tg.showAlert('⚠️ দয়া করে পেমেন্ট নাম্বার দিন');
+                return;
+            }
+
+            // হ্যাপটিক ফিডব্যাক
+            haptic.impactOccurred('heavy');
+
+            // কনফার্মেশন পপআপ
+            tg.showPopup({
+                title: '✅ কনফার্মেশন',
+                message: `আপনি ${amount} NIVA Coin সেল করতে চান?\n\nমোট পাবেন: ${document.getElementById('total').textContent}`,
+                buttons: [
+                    {id: 'cancel', type: 'cancel', text: 'না'},
+                    {id: 'confirm', type: 'default', text: 'হ্যাঁ, কনফার্ম'}
+                ]
+            }, function(buttonId) {
+                if (buttonId === 'confirm') {
+                    tg.showAlert('✅ আপনার সেল রিকোয়েস্ট জমা হয়েছে! অ্যাডমিন শীঘ্রই যোগাযোগ করবে।');
+                    // এখানে আপনার ব্যাকএন্ডে ডাটা পাঠানোর কোড যোগ করতে পারেন
+                }
+            });
+        }
+
+        // ব্যাক টু হোম ফাংশন
+        function goBack() {
+            haptic.impactOccurred('light');
+            tg.close(); // ওয়েব অ্যাপ ক্লোজ করে
+            // অথবা আপনি চাইলে হোম পেজে রিডাইরেক্ট করতে পারেন
+        }
+
+        // অটো ফিল ইউজারনেম (টেলিগ্রাম থেকে)
+        const user = tg.initDataUnsafe?.user;
+        if (user && user.username) {
+            document.getElementById('username').value = '@' + user.username;
+        } else if (user && user.first_name) {
+            document.getElementById('username').value = user.first_name;
+        }
+
+        console.log('NIVA BUYER ZONE Ready!');
+    </script>
+</body>
+</html>            background: #1E2333;
             padding: 20px;
             border-radius: 20px;
             margin-bottom: 25px;
