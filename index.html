@@ -19,14 +19,13 @@
             min-height: 100vh;
         }
         
-        /* কন্টেইনার */
         .container {
             padding: 16px;
             max-width: 400px;
             margin: 0 auto;
         }
         
-        /* হেডার */
+        /* হোম পেজ স্টাইল */
         .header {
             display: flex;
             align-items: center;
@@ -65,7 +64,6 @@
             color: #0a0f1e;
         }
         
-        /* সাকসেস কার্ড */
         .success-card {
             background: #1a1f30;
             border-radius: 20px;
@@ -87,7 +85,6 @@
             color: #00ff88;
         }
         
-        /* জয়েন বাটন */
         .join-btn {
             background: #00ff88;
             color: #0a0f1e;
@@ -105,7 +102,6 @@
             gap: 10px;
         }
         
-        /* মার্কেট সেকশন */
         .market-section {
             background: #1a1f30;
             border-radius: 20px;
@@ -144,7 +140,6 @@
             font-weight: bold;
         }
         
-        /* নাইভা কয়েন */
         .niva-coin {
             background: #0f1422;
             border-radius: 15px;
@@ -185,7 +180,6 @@
             color: #00ff88;
         }
         
-        /* সেল বাটন */
         .sell-btn {
             background: linear-gradient(135deg, #00ff88, #00cc66);
             color: #0a0f1e;
@@ -200,7 +194,7 @@
             text-transform: uppercase;
         }
         
-        /* সেকেন্ড পেজের স্টাইল (সেল ফর্ম) */
+        /* সেল ফর্ম পেজ */
         .back-btn {
             background: transparent;
             color: #888;
@@ -339,8 +333,8 @@
             margin-top: 20px;
         }
         
-        /* থার্ড পেজের স্টাইল (কনফার্মেশন) */
-        .review-card {
+        /* রিভিউ পেজ - আপনার ছবির মতো */
+        .review-container {
             background: #1E2333;
             border-radius: 20px;
             padding: 25px;
@@ -350,32 +344,54 @@
         .review-title {
             font-size: 22px;
             font-weight: bold;
-            margin-bottom: 20px;
             color: #00ff88;
+            margin-bottom: 20px;
+            text-align: center;
         }
         
-        .review-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
+        .review-subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .review-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 1px solid #2A2F3F;
         }
         
-        .review-label {
+        .review-item-label {
             color: #888;
+            font-size: 14px;
+            margin-bottom: 5px;
         }
         
-        .review-value {
+        .review-item-value {
+            font-size: 18px;
             font-weight: 600;
             color: white;
         }
         
-        .total-amount {
-            font-size: 24px;
+        .review-total-box {
+            background: #0f1422;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .review-total-label {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .review-total-value {
+            font-size: 32px;
             font-weight: bold;
             color: #00ff88;
-            text-align: center;
-            margin: 20px 0;
         }
         
         .confirm-btn {
@@ -400,6 +416,12 @@
             width: 100%;
             font-size: 16px;
             cursor: pointer;
+            margin-bottom: 10px;
+        }
+        
+        hr {
+            border: 0.5px solid #2A2F3F;
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -458,7 +480,7 @@
         <div class="container">
             <button class="back-btn" onclick="showHomePage()">← ব্যাক টু হোম</button>
             
-            <div class="sell-header">FAST NIVA SELL
+            <div class="sell-header">NIVA BUYER ZONE</div>
             <div class="sell-subheader">Sell Niva Coin. Enter your details carefully before submitting.</div>
             
             <div class="send-box">
@@ -499,42 +521,51 @@
                 </div>
             </div>
 
-            <button class="next-btn" onclick="showConfirmationPage()">Next Step →</button>
+            <button class="next-btn" onclick="showReviewPage()">Next Step →</button>
         </div>
     </div>
 
-    <!-- কনফার্মেশন পেজ (৩য় পেজ) -->
-    <div id="confirmationPage" style="display: none;">
+    <!-- রিভিউ পেজ (৩য় পেজ - আপনার ছবির মতো) -->
+    <div id="reviewPage" style="display: none;">
         <div class="container">
-            <button class="back-btn" onclick="showSellPage()">← Go Back & Edit</button>
+            <div class="sell-header">FAST NIVA SELL</div>
             
-            <div class="sell-header">Review Details</div>
-            <div class="sell-subheader">Please check everything before final submission.</div>
+            <hr>
             
-            <div class="review-card">
-                <div class="review-row">
-                    <span class="review-label">COIN:</span>
-                    <span class="review-value" id="reviewCoin">Niva coin</span>
+            <div class="review-title">Review Details</div>
+            <div class="review-subtitle">Please check everything before final submission.</div>
+            
+            <div class="review-container">
+                <div class="review-item">
+                    <div class="review-item-label">COIN:</div>
+                    <div class="review-item-value" id="reviewCoin">Niva coin</div>
                 </div>
-                <div class="review-row">
-                    <span class="review-label">Amount:</span>
-                    <span class="review-value" id="reviewAmount"></span>
+                
+                <div class="review-item">
+                    <div class="review-item-label">Amount:</div>
+                    <div class="review-item-value" id="reviewAmount"></div>
                 </div>
-                <div class="review-row">
-                    <span class="review-label">Sender:</span>
-                    <span class="review-value" id="reviewSender"></span>
+                
+                <div class="review-item">
+                    <div class="review-item-label">Sender:</div>
+                    <div class="review-item-value" id="reviewSender"></div>
                 </div>
-                <div class="review-row">
-                    <span class="review-label">Method:</span>
-                    <span class="review-value">Bkash</span>
+                
+                <div class="review-item">
+                    <div class="review-item-label">Method:</div>
+                    <div class="review-item-value">Bkash</div>
                 </div>
-                <div class="review-row">
-                    <span class="review-label">Account No:</span>
-                    <span class="review-value" id="reviewAccount"></span>
+                
+                <div class="review-item">
+                    <div class="review-item-label">Account No:</div>
+                    <div class="review-item-value" id="reviewAccount"></div>
                 </div>
             </div>
             
-            <div class="total-amount" id="reviewTotal"></div>
+            <div class="review-total-box">
+                <div class="review-total-label">You Will Get:</div>
+                <div class="review-total-value" id="reviewTotal"></div>
+            </div>
             
             <button class="confirm-btn" onclick="confirmSubmit()">Confirm & Submit ✔</button>
             <button class="edit-btn" onclick="showSellPage()">Go Back & Edit</button>
@@ -551,19 +582,11 @@
             document.getElementById('username').textContent = '@' + user.username;
         }
         
-        // স্টোরেজ ভেরিয়েবল
-        let orderData = {
-            amount: 0,
-            username: '',
-            bkash: '',
-            total: 0
-        };
-        
         // হোম পেজ দেখানো
         function showHomePage() {
             document.getElementById('homePage').style.display = 'block';
             document.getElementById('sellPage').style.display = 'none';
-            document.getElementById('confirmationPage').style.display = 'none';
+            document.getElementById('reviewPage').style.display = 'none';
         }
         
         // সেল পেজ দেখানো
@@ -571,15 +594,15 @@
             tg.HapticFeedback.impactOccurred('medium');
             document.getElementById('homePage').style.display = 'none';
             document.getElementById('sellPage').style.display = 'block';
-            document.getElementById('confirmationPage').style.display = 'none';
+            document.getElementById('reviewPage').style.display = 'none';
             
             if (user?.username) {
                 document.getElementById('senderUsername').value = '@' + user.username;
             }
         }
         
-        // কনফার্মেশন পেজ দেখানো
-        function showConfirmationPage() {
+        // রিভিউ পেজ দেখানো
+        function showReviewPage() {
             const amount = document.getElementById('amount').value;
             const username = document.getElementById('senderUsername').value;
             const bkash = document.getElementById('bkash').value;
@@ -599,15 +622,7 @@
 
             const total = (amount / 1000) * 3;
             
-            // ডাটা স্টোর করা
-            orderData = {
-                amount: amount,
-                username: username,
-                bkash: bkash,
-                total: total
-            };
-            
-            // কনফার্মেশন পেজ আপডেট করা
+            // রিভিউ পেজ আপডেট
             document.getElementById('reviewAmount').textContent = amount;
             document.getElementById('reviewSender').textContent = username;
             document.getElementById('reviewAccount').textContent = bkash;
@@ -616,7 +631,7 @@
             tg.HapticFeedback.impactOccurred('light');
             document.getElementById('homePage').style.display = 'none';
             document.getElementById('sellPage').style.display = 'none';
-            document.getElementById('confirmationPage').style.display = 'block';
+            document.getElementById('reviewPage').style.display = 'block';
         }
         
         // জয়েন চ্যানেল
