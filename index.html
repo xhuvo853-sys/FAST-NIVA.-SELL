@@ -200,11 +200,7 @@
             text-transform: uppercase;
         }
         
-        /* সেকেন্ড পেজের স্টাইল */
-        .sell-page {
-            padding: 16px;
-        }
-        
+        /* সেকেন্ড পেজের স্টাইল (সেল ফর্ম) */
         .back-btn {
             background: transparent;
             color: #888;
@@ -250,7 +246,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 10px 0;
         }
         
         .id-text {
@@ -321,6 +316,11 @@
             color: #00ff88;
         }
         
+        .fee-value {
+            font-size: 16px;
+            color: #ff4444;
+        }
+        
         .total-value {
             font-size: 20px;
             font-weight: bold;
@@ -338,12 +338,75 @@
             cursor: pointer;
             margin-top: 20px;
         }
+        
+        /* থার্ড পেজের স্টাইল (কনফার্মেশন) */
+        .review-card {
+            background: #1E2333;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .review-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #00ff88;
+        }
+        
+        .review-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #2A2F3F;
+        }
+        
+        .review-label {
+            color: #888;
+        }
+        
+        .review-value {
+            font-weight: 600;
+            color: white;
+        }
+        
+        .total-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff88;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .confirm-btn {
+            background: linear-gradient(90deg, #00ff88, #00cc66);
+            color: #0B0E1A;
+            border: none;
+            padding: 18px;
+            border-radius: 15px;
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        
+        .edit-btn {
+            background: transparent;
+            color: #888;
+            border: 1px solid #2A2F3F;
+            padding: 15px;
+            border-radius: 15px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <!-- হোম পেজ -->
     <div id="homePage">
         <div class="container">
-            <!-- হেডার -->
             <div class="header">
                 <div class="logo">
                     <h1>FAST NIVA SELL</h1>
@@ -354,18 +417,15 @@
                 </div>
             </div>
 
-            <!-- সাকসেস কার্ড -->
             <div class="success-card">
                 <div class="success-label">SUCCESS</div>
                 <div class="success-number" id="successCount">0</div>
             </div>
 
-            <!-- জয়েন চ্যানেল বাটন -->
             <button class="join-btn" onclick="joinChannel()">
                 <span>📢</span> Join Channel Updates, offers & proofs
             </button>
 
-            <!-- মার্কেট সেকশন -->
             <div class="market-section">
                 <div class="market-header">
                     <span class="market-title">Coin Market</span>
@@ -374,7 +434,6 @@
                 
                 <div class="online-badge">⭕ ONLINE</div>
 
-                <!-- নাইভা কয়েন -->
                 <div class="niva-coin">
                     <div class="coin-name">Niva Coin</div>
                     <div class="rate-box">
@@ -388,21 +447,20 @@
                         </div>
                     </div>
 
-                    <!-- সেল বাটন -->
                     <button class="sell-btn" onclick="showSellPage()">TAP TO SELL</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- সেল ফর্ম পেজ (২য় পেজ) -->
     <div id="sellPage" style="display: none;">
         <div class="container">
             <button class="back-btn" onclick="showHomePage()">← ব্যাক টু হোম</button>
             
-            <div class="sell-header">NIVA BUYER ZONE</div>
+            <div class="sell-header">FAST NIVA SELL
             <div class="sell-subheader">Sell Niva Coin. Enter your details carefully before submitting.</div>
             
-            <!-- Send Coins Section -->
             <div class="send-box">
                 <div class="send-label">📤 SEND COINS TO THIS ID</div>
                 <div class="send-id">
@@ -411,7 +469,6 @@
                 </div>
             </div>
 
-            <!-- ফর্ম -->
             <div class="form-group">
                 <label class="form-label">💰 Amount (Min 1000)</label>
                 <input type="number" class="form-input" id="amount" placeholder="Enter amount" min="1000" oninput="calculateTotal()">
@@ -423,16 +480,10 @@
             </div>
 
             <div class="form-group">
-                <label class="form-label">🏦 Bkash</label>
-                <input type="text" class="form-input" id="bkash" placeholder="Bkash number">
+                <label class="form-label">🏦 Bkash Number</label>
+                <input type="text" class="form-input" id="bkash" placeholder="Enter your Bkash number">
             </div>
 
-            <div class="form-group">
-                <label class="form-label">📱 Payment Number</label>
-                <input type="text" class="form-input" id="paymentNumber" placeholder="Your payment number">
-            </div>
-
-            <!-- রেট বক্স -->
             <div class="rate-box2">
                 <div class="rate-info">
                     <div class="rate-label2">Applied Rate</div>
@@ -448,8 +499,45 @@
                 </div>
             </div>
 
-            <!-- নেক্সট বাটন -->
-            <button class="next-btn" onclick="nextStep()">Next Step →</button>
+            <button class="next-btn" onclick="showConfirmationPage()">Next Step →</button>
+        </div>
+    </div>
+
+    <!-- কনফার্মেশন পেজ (৩য় পেজ) -->
+    <div id="confirmationPage" style="display: none;">
+        <div class="container">
+            <button class="back-btn" onclick="showSellPage()">← Go Back & Edit</button>
+            
+            <div class="sell-header">Review Details</div>
+            <div class="sell-subheader">Please check everything before final submission.</div>
+            
+            <div class="review-card">
+                <div class="review-row">
+                    <span class="review-label">COIN:</span>
+                    <span class="review-value" id="reviewCoin">Niva coin</span>
+                </div>
+                <div class="review-row">
+                    <span class="review-label">Amount:</span>
+                    <span class="review-value" id="reviewAmount"></span>
+                </div>
+                <div class="review-row">
+                    <span class="review-label">Sender:</span>
+                    <span class="review-value" id="reviewSender"></span>
+                </div>
+                <div class="review-row">
+                    <span class="review-label">Method:</span>
+                    <span class="review-value">Bkash</span>
+                </div>
+                <div class="review-row">
+                    <span class="review-label">Account No:</span>
+                    <span class="review-value" id="reviewAccount"></span>
+                </div>
+            </div>
+            
+            <div class="total-amount" id="reviewTotal"></div>
+            
+            <button class="confirm-btn" onclick="confirmSubmit()">Confirm & Submit ✔</button>
+            <button class="edit-btn" onclick="showSellPage()">Go Back & Edit</button>
         </div>
     </div>
 
@@ -463,10 +551,19 @@
             document.getElementById('username').textContent = '@' + user.username;
         }
         
+        // স্টোরেজ ভেরিয়েবল
+        let orderData = {
+            amount: 0,
+            username: '',
+            bkash: '',
+            total: 0
+        };
+        
         // হোম পেজ দেখানো
         function showHomePage() {
             document.getElementById('homePage').style.display = 'block';
             document.getElementById('sellPage').style.display = 'none';
+            document.getElementById('confirmationPage').style.display = 'none';
         }
         
         // সেল পেজ দেখানো
@@ -474,44 +571,18 @@
             tg.HapticFeedback.impactOccurred('medium');
             document.getElementById('homePage').style.display = 'none';
             document.getElementById('sellPage').style.display = 'block';
+            document.getElementById('confirmationPage').style.display = 'none';
             
-            // ইউজারনেম অটো ফিল
             if (user?.username) {
                 document.getElementById('senderUsername').value = '@' + user.username;
             }
         }
         
-        // জয়েন চ্যানেল
-        function joinChannel() {
-            tg.HapticFeedback.impactOccurred('light');
-            tg.openTelegramLink('https://t.me/your_channel'); // আপনার চ্যানেল লিংক দিন
-        }
-        
-        // কপি টু ক্লিপবোর্ড
-        function copyToClipboard() {
-            const text = 'shuvo46637';
-            navigator.clipboard.writeText(text);
-            tg.HapticFeedback.impactOccurred('medium');
-            tg.showAlert('✅ ID কপি করা হয়েছে!');
-        }
-        
-        // টোটাল ক্যালকুলেট (প্রতি 1000 = 3 টাকা)
-        function calculateTotal() {
-            const amount = parseFloat(document.getElementById('amount').value) || 0;
-            if (amount >= 1000) {
-                const total = (amount / 1000) * 3;
-                document.getElementById('total').textContent = total.toFixed(2) + ' ₺';
-            } else {
-                document.getElementById('total').textContent = '0.00 ₺';
-            }
-        }
-        
-        // নেক্সট স্টেপ
-        function nextStep() {
+        // কনফার্মেশন পেজ দেখানো
+        function showConfirmationPage() {
             const amount = document.getElementById('amount').value;
             const username = document.getElementById('senderUsername').value;
             const bkash = document.getElementById('bkash').value;
-            const paymentNumber = document.getElementById('paymentNumber').value;
 
             if (!amount || amount < 1000) {
                 tg.showAlert('⚠️ ন্যূনতম 1000 কয়েন দিন');
@@ -525,18 +596,77 @@
                 tg.showAlert('⚠️ বিকাশ নাম্বার দিন');
                 return;
             }
-            if (!paymentNumber) {
-                tg.showAlert('⚠️ পেমেন্ট নাম্বার দিন');
-                return;
-            }
 
             const total = (amount / 1000) * 3;
+            
+            // ডাটা স্টোর করা
+            orderData = {
+                amount: amount,
+                username: username,
+                bkash: bkash,
+                total: total
+            };
+            
+            // কনফার্মেশন পেজ আপডেট করা
+            document.getElementById('reviewAmount').textContent = amount;
+            document.getElementById('reviewSender').textContent = username;
+            document.getElementById('reviewAccount').textContent = bkash;
+            document.getElementById('reviewTotal').textContent = total.toFixed(2) + ' ₺';
+            
+            tg.HapticFeedback.impactOccurred('light');
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('sellPage').style.display = 'none';
+            document.getElementById('confirmationPage').style.display = 'block';
+        }
+        
+        // জয়েন চ্যানেল
+        function joinChannel() {
+            tg.HapticFeedback.impactOccurred('light');
+            tg.openTelegramLink('https://t.me/your_channel');
+        }
+        
+        // কপি টু ক্লিপবোর্ড
+        function copyToClipboard() {
+            const text = 'shuvo46637';
+            navigator.clipboard.writeText(text);
+            tg.HapticFeedback.impactOccurred('medium');
+            tg.showAlert('✅ ID কপি করা হয়েছে!');
+        }
+        
+        // টোটাল ক্যালকুলেট
+        function calculateTotal() {
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            if (amount >= 1000) {
+                const total = (amount / 1000) * 3;
+                document.getElementById('total').textContent = total.toFixed(2) + ' ₺';
+            } else {
+                document.getElementById('total').textContent = '0.00 ₺';
+            }
+        }
+        
+        // কনফার্ম সাবমিট
+        function confirmSubmit() {
+            tg.HapticFeedback.impactOccurred('heavy');
+            
             tg.showPopup({
-                title: '✅ কনফার্মেশন',
-                message: `${amount} কয়েন = ${total.toFixed(2)}₺\n\nআইডি: shuvo46637`,
+                title: '✅ সফল হয়েছে!',
+                message: `আপনার সেল রিকোয়েস্ট জমা হয়েছে।\n\nঅ্যাডমিন শীঘ্রই যোগাযোগ করবে।`,
                 buttons: [{type: 'ok', text: 'ঠিক আছে'}]
             });
+            
+            // সাকসেস কাউন্ট বাড়ানো
+            let count = parseInt(document.getElementById('successCount').textContent) || 0;
+            count++;
+            document.getElementById('successCount').textContent = count;
+            
+            // হোম পেজে ফিরে যাওয়া
+            setTimeout(() => {
+                showHomePage();
+                // ফর্ম ক্লিয়ার করা
+                document.getElementById('amount').value = '';
+                document.getElementById('bkash').value = '';
+            }, 2000);
         }
     </script>
 </body>
-                    </html>
+    </html>
