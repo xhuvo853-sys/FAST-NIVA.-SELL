@@ -1,40 +1,563 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAST NIVA SELL</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
+<!doctype html>
+<html lang="bn"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <script src="https://telegram.org/js/telegram-web-app.js"></script> 
+  <title>FAST NIVA SELL</title> 
+  <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
+        
         body {
-            background: #0B0E1A;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--tg-theme-bg-color, #0a0f1e);
+            color: var(--tg-theme-text-color, #ffffff);
             min-height: 100vh;
-            color: white;
-            padding: 20px;
         }
+        
         .container {
+            padding: 16px;
             max-width: 400px;
             margin: 0 auto;
         }
+        
+        /* হেডার সেকশন */
         .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .logo h1 {
             font-size: 24px;
             font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .username {
+            color: var(--tg-theme-hint-color, #667eea);
+            font-weight: 500;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+        
+        /* সাকসেস কার্ড */
+        .success-card {
+            background: var(--tg-theme-secondary-bg-color, #1a1f30);
+            border-radius: 20px;
+            padding: 30px;
             margin-bottom: 20px;
-            color: #00ff88;
+            text-align: center;
+            border: 1px solid rgba(102, 126, 234, 0.3);
         }
-        .sub-header {
-            color: #888;
+        
+        .success-label {
+            color: var(--tg-theme-hint-color, #8f9bb3);
             font-size: 14px;
-            margin-bottom: 30px;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
         }
-        .send-box {
-            background: #1E2333;
+        
+        .success-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--tg-theme-button-color, #667eea);
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        /* জয়েন বাটন */
+        .join-btn {
+            background: var(--tg-theme-button-color, #667eea);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            border: none;
+            width: 100%;
+            padding: 16px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: opacity 0.3s;
+        }
+        
+        .join-btn:active {
+            opacity: 0.8;
+        }
+        
+        /* কয়েন মার্কেট সেকশন */
+        .market-section {
+            background: var(--tg-theme-secondary-bg-color, #1a1f30);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--tg-theme-section-separator-color, #2a2f40);
+        }
+        
+        .market-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .market-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .admin-rate-badge {
+            background: var(--tg-theme-section-bg-color, #2a2f40);
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            color: var(--tg-theme-hint-color, #8f9bb3);
+        }
+        
+        .offline-badge {
+            background: #ff4757;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        /* নাইভা কয়েন */
+        .niva-coin {
+            background: var(--tg-theme-bg-color, #0f1422);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .coin-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .rate-box {
+            background: var(--tg-theme-secondary-bg-color, #1a1f30);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .rate-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--tg-theme-section-separator-color, #2a2f40);
+        }
+        
+        .rate-row:last-child {
+            border-bottom: none;
+        }
+        
+        .rate-label {
+            color: var(--tg-theme-hint-color, #8f9bb3);
+        }
+        
+        .rate-value {
+            font-weight: 600;
+            color: var(--tg-theme-link-color, #667eea);
+        }
+        
+        /* সেল বাটন */
+        .sell-btn {
+            background: linear-gradient(135deg, #00d09c, #00b894);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 16px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 15px 0;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 208, 156, 0.3);
+            transition: transform 0.2s;
+        }
+        
+        .sell-btn:active {
+            transform: scale(0.98);
+        }
+        
+        /* লাইভ রেট */
+        .live-rate {
+            background: linear-gradient(135deg, var(--tg-theme-secondary-bg-color, #1a1f30), var(--tg-theme-bg-color, #0f1422));
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid var(--tg-theme-button-color, #667eea);
+            margin-bottom: 20px;
+        }
+        
+        .live-rate-title {
+            color: var(--tg-theme-hint-color, #8f9bb3);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .live-rate-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--tg-theme-button-color, #667eea);
+        }
+        
+        /* ইউজার আইডি */
+        .user-id-display {
+            font-size: 12px;
+            color: var(--tg-theme-hint-color, #8f9bb3);
+            margin-top: 10px;
+        }
+        
+        /* ব্যাক বাটন */
+        .back-button {
+            background: var(--tg-theme-secondary-bg-color, #1a1f30);
+            border: none;
+            color: var(--tg-theme-text-color, #ffffff);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* অ্যানিমেশন */
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .live-rate-value {
+            animation: pulse 2s infinite;
+        }
+        
+        /* লোডিং স্পিনার */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .loading-spinner {
+            border: 3px solid var(--tg-theme-secondary-bg-color, #1a1f30);
+            border-top: 3px solid var(--tg-theme-button-color, #667eea);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style> 
+ </head> 
+ <body> 
+  <div class="loading" id="loading"> 
+   <div class="loading-spinner"></div> 
+   <p style="margin-top: 10px;">লোড হচ্ছে...</p> 
+  </div> 
+  <div class="container"> <!-- ব্যাক বাটন (মোবাইলের জন্য) --> <button class="back-button" onclick="goBack()" id="backBtn" style="display: none;"> <span>←</span> পেছনে </button> <!-- হেডার --> 
+   <div class="header"> 
+    <div class="logo"> 
+     <h1>FAST NIVA SELL</h1> 
+    </div> 
+    <div class="user-info"> <span class="username" id="username">@xhuv0900</span> 
+     <div class="avatar" id="avatar">
+       X 
+     </div> 
+    </div> 
+   </div> <!-- সাকসেস কার্ড --> 
+   <div class="success-card"> 
+    <div class="success-label">
+      SUCCESS 
+    </div> 
+    <div class="success-number" id="successCount">
+      0 
+    </div> 
+   </div> <!-- জয়েন চ্যানেল বাটন --> <button class="join-btn" onclick="joinChannel()"> <span>📢</span> Join Channel Updates, offers &amp; proofs </button> <!-- মার্কেট সেকশন --> 
+   <div class="market-section"> 
+    <div class="market-header"> <span class="market-title">Coin Market</span> <span class="admin-rate-badge">100K+ = Admin Rate</span> 
+    </div> 
+    <div class="offline-badge">
+      ⭕ ONLINE 
+    </div> <!-- নাইভা কয়েন --> 
+    <div class="niva-coin"> 
+     <div class="coin-name">
+       Niva Coin 
+     </div> 
+     <div class="rate-box"> 
+      <div class="rate-row"> <span class="rate-label">User Rate</span> <span class="rate-value" id="userRate">3.25₺</span> 
+      </div> 
+      <div class="rate-row"> <span class="rate-label">Admin Rate</span> <span class="rate-value" id="adminRate">3.25₺</span> 
+      </div> 
+     </div> <!-- সেল বাটন --> <button class="sell-btn" onclick="sellCoin()">TAP TO SELL</button> 
+    </div> 
+   </div> <!-- লাইভ মার্কেট রেট --> 
+   <div class="live-rate"> 
+    <div class="live-rate-title">
+      LIVE MARKET RATE 
+    </div> 
+    <div class="live-rate-value" id="liveRate">
+       3৳ 
+    </div> 
+    <div class="user-id-display" id="userId"></div> 
+   </div> <!-- কন্টাক্ট সাপোর্ট --> 
+   <div style="text-align: center; margin-top: 20px; padding: 10px;"> 
+    <p style="color: var(--tg-theme-hint-color, #8f9bb3); font-size: 12px;"> কোন সমস্যা? <a href="#" onclick="contactSupport()" style="color: var(--tg-theme-button-color, #667eea); text-decoration: none;">সাপোর্টে যোগাযোগ করুন</a> </p> 
+   </div> 
+  </div> 
+  <script>
+        // টেলিগ্রাম ওয়েবঅ্যাপ ইনিশিয়ালাইজ
+        let tg = window.Telegram?.WebApp;
+        
+        if (!tg) {
+            console.error('Telegram WebApp not found');
+            // ডেভেলপমেন্ট মোডের জন্য ডামি অবজেক্ট
+            tg = {
+                expand: () => {},
+                ready: () => {},
+                close: () => { window.close(); },
+                showPopup: (params, callback) => {
+                    if (callback) {
+                        if (confirm(params.message)) {
+                            callback('ok');
+                        } else {
+                            callback('cancel');
+                        }
+                    }
+                },
+                openTelegramLink: (url) => { window.open(url, '_blank'); },
+                HapticFeedback: {
+                    impactOccurred: () => {}
+                },
+                initDataUnsafe: {
+                    user: {
+                        id: 123456789,
+                        first_name: 'Test',
+                        username: 'test_user'
+                    }
+                }
+            };
+        }
+        
+        tg.expand();
+        
+        // লোডিং হাইড করা
+        setTimeout(() => {
+            document.getElementById('loading').style.display = 'none';
+        }, 500);
+        
+        // ব্যাক বাটন দেখানো
+        tg.BackButton?.show();
+        tg.BackButton?.onClick(() => {
+            goBack();
+        });
+        
+        // ইউজারের তথ্য লোড
+        const user = tg.initDataUnsafe?.user;
+        
+        if (user) {
+            // ইউজারনেম সেট
+            if (user.username) {
+                document.getElementById('username').textContent = '@' + user.username;
+            } else {
+                document.getElementById('username').textContent = user.first_name;
+            }
+            
+            // অ্যাভাটার সেট
+            document.getElementById('avatar').textContent = 
+                user.first_name ? user.first_name.charAt(0).toUpperCase() : 'U';
+            
+            // ইউজার আইডি দেখান
+            document.getElementById('userId').textContent = 'ID: ' + user.id;
+            
+            // স্টোরেজ থেকে সাকসেস কাউন্ট লোড
+            let savedCount = localStorage.getItem('successCount_' + user.id);
+            if (savedCount) {
+                successCount = parseInt(savedCount);
+                document.getElementById('successCount').textContent = successCount;
+            }
+        }
+        
+        // সাকসেস কাউন্ট
+        let successCount = parseInt(localStorage.getItem('successCount_' + (user?.id || 'guest'))) || 0;
+        document.getElementById('successCount').textContent = successCount;
+        
+        // জয়েন চ্যানেল ফাংশন
+        function joinChannel() {
+            tg.HapticFeedback.impactOccurred('light');
+            
+            // আপনার চ্যানেল লিংক দিন
+            tg.openTelegramLink('https://t.me/incomebd1k'); 
+            
+            // সাকসেস কাউন্ট বাড়ান
+            successCount++;
+            document.getElementById('successCount').textContent = successCount;
+            
+            // স্টোরেজে সেভ করুন
+            if (user) {
+                localStorage.setItem('successCount_' + user.id, successCount);
+            }
+            
+            tg.showPopup({
+                title: '✅ জয়েন করেছেন!',
+                message: 'চ্যানেলে জয়েন করার জন্য ধন্যবাদ',
+                buttons: [{type: 'ok', text: 'ঠিক আছে'}]
+            });
+        }
+        
+        // কয়েন সেল ফাংশন
+        function sellCoin() {
+            tg.HapticFeedback.impactOccurred('medium');
+            
+            const rate = parseFloat(document.getElementById('liveRate').textContent);
+            
+            tg.showPopup({
+                title: '💰 নাইভা কয়েন সেল',
+                message: `বর্তমান রেট: ${rate}₺\n\nআপনি কত কয়েন সেল করতে চান?`,
+                buttons: [
+                    {id: 'sell_100', text: '100 কয়েন'},
+                    {id: 'sell_500', text: '500 কয়েন'},
+                    {id: 'sell_1000', text: '1000 কয়েন'},
+                    {id: 'custom', text: 'কাস্টম পরিমাণ'},
+                    {type: 'cancel', text: 'বাতিল'}
+                ]
+            }, function(buttonId) {
+                if (buttonId && buttonId !== 'cancel') {
+                    if (buttonId === 'custom') {
+                        // কাস্টম পরিমাণের জন্য প্রম্পট
+                        const customAmount = prompt('কত কয়েন সেল করতে চান? (সর্বনিম্ন 10)', '100');
+                        if (customAmount && !isNaN(customAmount) && parseInt(customAmount) >= 10) {
+                            processSellOrder(parseInt(customAmount), rate);
+                        } else {
+                            tg.showPopup({
+                                title: '⚠️ ভুল ইনপুট',
+                                message: 'অনুগ্রহ করে 10 বা তার বেশি সংখ্যা দিন',
+                                buttons: [{type: 'ok', text: 'ঠিক আছে'}]
+                            });
+                        }
+                    } else {
+                        const amount = parseInt(buttonId.split('_')[1]);
+                        processSellOrder(amount, rate);
+                    }
+                }
+            });
+        }
+        
+        // অর্ডার প্রসেস
+        function processSellOrder(amount, rate) {
+            const total = amount * rate;
+            const orderId = 'ORD' + Date.now().toString().slice(-8);
+            
+            tg.showPopup({
+                title: '✅ অর্ডার কনফার্ম',
+                message: `অর্ডার ID: ${orderId}\n\n` +
+                        `${amount} NIVA × ${rate}₺ = ${total.toFixed(2)}₺\n\n` +
+                        `এডমিন শীঘ্রই যোগাযোগ করবে।\n` +
+                        `অনুগ্রহ করে অপেক্ষা করুন...`,
+                buttons: [
+                    {id: 'ok', text: 'ঠিক আছে'},
+                    {id: 'contact', text: 'এডমিনের সাথে কথা বলুন'}
+                ]
+            }, function(buttonId) {
+                if (buttonId === 'contact') {
+                    tg.openTelegramLink('@xhuvo900');
+                }
+            });
+            
+            // সাকসেস কাউন্ট বাড়ান
+            successCount++;
+            document.getElementById('successCount').textContent = successCount;
+            if (user) {
+                localStorage.setItem('successCount_' + user.id, successCount);
+            }
+        }
+        
+        // লাইভ রেট আপডেট (ডেমো)
+        setInterval(function() {
+            let currentRate = parseFloat(document.getElementById('liveRate').textContent) || 3.25;
+            let change = (Math.random() * 0.1 - 0.05);
+            let newRate = (currentRate + change).toFixed(2);
+            
+            // রেট 4.50 থেকে 4.50 এর মধ্যে রাখুন
+            if (parseFloat(newRate) < 4.50) newRate = '4.50';
+            if (parseFloat(newRate) > 4.50) newRate = '4.50';
+            
+            document.getElementById('liveRate').textContent = newRate + ' ₺';
+            document.getElementById('userRate').textContent = newRate + '₺';
+            document.getElementById('adminRate').textContent = newRate + '₺';
+        }, 8000);
+        
+        // ব্যাক ফাংশন
+        function goBack() {
+            tg.HapticFeedback.impactOccurred('light');
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                tg.close();
+            }
+        }
+        
+        // সাপোর্ট কন্টাক্ট
+        function contactSupport() {
+            tg.HapticFeedback.impactOccurred('light');
+            tg.openTelegramLink('https://t.me/incomebd1k');
+        }
+        
+        // মেইন বাটন সেটআপ
+        tg.MainButton.setText('সেল করুন');
+        tg.MainButton.onClick(sellCoin);
+        tg.MainButton.show();
+        
+        tg.ready();
+        
+        // ক্লোজ ইভেন্ট
+        window.addEventListener('popstate', function() {
+            tg.close();
+        });
+    </script> 
+ </body>
+    </html>            background: #1E2333;
             padding: 20px;
             border-radius: 20px;
             margin-bottom: 25px;
