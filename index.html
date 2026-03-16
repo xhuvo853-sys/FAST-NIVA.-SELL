@@ -10,15 +10,16 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: #0a0f1e;
-            color: #ffffff;
+            color: white;
             min-height: 100vh;
         }
         
+        /* কন্টেইনার */
         .container {
             padding: 16px;
             max-width: 400px;
@@ -77,7 +78,6 @@
         .success-label {
             color: #888;
             font-size: 14px;
-            letter-spacing: 1px;
             margin-bottom: 10px;
         }
         
@@ -111,7 +111,6 @@
             border-radius: 20px;
             padding: 20px;
             margin-bottom: 20px;
-            border: 1px solid #2a2f40;
         }
         
         .market-header {
@@ -200,58 +199,257 @@
             cursor: pointer;
             text-transform: uppercase;
         }
+        
+        /* সেকেন্ড পেজের স্টাইল */
+        .sell-page {
+            padding: 16px;
+        }
+        
+        .back-btn {
+            background: transparent;
+            color: #888;
+            border: 1px solid #2A2F3F;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .sell-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #00ff88;
+        }
+        
+        .sell-subheader {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        
+        .send-box {
+            background: #1E2333;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .send-label {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .send-id {
+            background: #2A2F3F;
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .id-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        
+        .copy-btn {
+            background: #00ff88;
+            color: #0B0E1A;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .form-input {
+            width: 100%;
+            background: #1E2333;
+            border: 1px solid #2A2F3F;
+            padding: 15px;
+            border-radius: 15px;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #00ff88;
+        }
+        
+        .rate-box2 {
+            background: #1E2333;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 25px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .rate-info {
+            text-align: center;
+        }
+        
+        .rate-label2 {
+            color: #888;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        
+        .rate-value2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        
+        .total-value {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .next-btn {
+            background: linear-gradient(90deg, #00ff88, #00cc66);
+            color: #0B0E1A;
+            border: none;
+            padding: 20px;
+            border-radius: 50px;
+            width: 100%;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- হেডার -->
-        <div class="header">
-            <div class="logo">
-                <h1>FAST NIVA SELL</h1>
-            </div>
-            <div class="user-info">
-                <span class="username" id="username">@xhuv0900</span>
-                <div class="avatar" id="avatar">X</div>
-            </div>
-        </div>
-
-        <!-- সাকসেস কার্ড -->
-        <div class="success-card">
-            <div class="success-label">SUCCESS</div>
-            <div class="success-number" id="successCount">0</div>
-        </div>
-
-        <!-- জয়েন চ্যানেল বাটন -->
-        <button class="join-btn" onclick="joinChannel()">
-            <span>📢</span> Join Channel Updates, offers & proofs
-        </button>
-
-        <!-- মার্কেট সেকশন -->
-        <div class="market-section">
-            <div class="market-header">
-                <span class="market-title">Coin Market</span>
-                <span class="admin-rate-badge">100K+ = Admin Rate</span>
-            </div>
-            
-            <div class="online-badge">⭕ ONLINE</div>
-
-            <!-- নাইভা কয়েন -->
-            <div class="niva-coin">
-                <div class="coin-name">Niva Coin</div>
-                <div class="rate-box">
-                    <div class="rate-row">
-                        <span class="rate-label">User Rate</span>
-                        <span class="rate-value" id="userRate">3.25₮</span>
-                    </div>
-                    <div class="rate-row">
-                        <span class="rate-label">Admin Rate</span>
-                        <span class="rate-value" id="adminRate">3.25₮</span>
-                    </div>
+    <div id="homePage">
+        <div class="container">
+            <!-- হেডার -->
+            <div class="header">
+                <div class="logo">
+                    <h1>FAST NIVA SELL</h1>
                 </div>
-
-                <!-- সেল বাটন -->
-                <button class="sell-btn" onclick="goToSellPage()">TAP TO SELL</button>
+                <div class="user-info">
+                    <span class="username" id="username">@xhuv0900</span>
+                    <div class="avatar" id="avatar">X</div>
+                </div>
             </div>
+
+            <!-- সাকসেস কার্ড -->
+            <div class="success-card">
+                <div class="success-label">SUCCESS</div>
+                <div class="success-number" id="successCount">0</div>
+            </div>
+
+            <!-- জয়েন চ্যানেল বাটন -->
+            <button class="join-btn" onclick="joinChannel()">
+                <span>📢</span> Join Channel Updates, offers & proofs
+            </button>
+
+            <!-- মার্কেট সেকশন -->
+            <div class="market-section">
+                <div class="market-header">
+                    <span class="market-title">Coin Market</span>
+                    <span class="admin-rate-badge">100K+ = Admin Rate</span>
+                </div>
+                
+                <div class="online-badge">⭕ ONLINE</div>
+
+                <!-- নাইভা কয়েন -->
+                <div class="niva-coin">
+                    <div class="coin-name">Niva Coin</div>
+                    <div class="rate-box">
+                        <div class="rate-row">
+                            <span class="rate-label">User Rate</span>
+                            <span class="rate-value" id="userRate">3.25₮</span>
+                        </div>
+                        <div class="rate-row">
+                            <span class="rate-label">Admin Rate</span>
+                            <span class="rate-value" id="adminRate">3.25₮</span>
+                        </div>
+                    </div>
+
+                    <!-- সেল বাটন -->
+                    <button class="sell-btn" onclick="showSellPage()">TAP TO SELL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sellPage" style="display: none;">
+        <div class="container">
+            <button class="back-btn" onclick="showHomePage()">← ব্যাক টু হোম</button>
+            
+            <div class="sell-header">NIVA BUYER ZONE</div>
+            <div class="sell-subheader">Sell Niva Coin. Enter your details carefully before submitting.</div>
+            
+            <!-- Send Coins Section -->
+            <div class="send-box">
+                <div class="send-label">📤 SEND COINS TO THIS ID</div>
+                <div class="send-id">
+                    <span class="id-text" id="walletId">shuvo46637</span>
+                    <button class="copy-btn" onclick="copyToClipboard()">📋 COPY ID</button>
+                </div>
+            </div>
+
+            <!-- ফর্ম -->
+            <div class="form-group">
+                <label class="form-label">💰 Amount (Min 1000)</label>
+                <input type="number" class="form-input" id="amount" placeholder="Enter amount" min="1000" oninput="calculateTotal()">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">👤 Sender Username</label>
+                <input type="text" class="form-input" id="senderUsername" placeholder="@username">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">🏦 Bkash</label>
+                <input type="text" class="form-input" id="bkash" placeholder="Bkash number">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">📱 Payment Number</label>
+                <input type="text" class="form-input" id="paymentNumber" placeholder="Your payment number">
+            </div>
+
+            <!-- রেট বক্স -->
+            <div class="rate-box2">
+                <div class="rate-info">
+                    <div class="rate-label2">Applied Rate</div>
+                    <div class="rate-value2" id="appliedRate">3₺</div>
+                </div>
+                <div class="rate-info">
+                    <div class="rate-label2">FEE</div>
+                    <div class="fee-value" id="fee">-0₺</div>
+                </div>
+                <div class="rate-info">
+                    <div class="rate-label2">TOTAL</div>
+                    <div class="total-value" id="total">0.00 ₺</div>
+                </div>
+            </div>
+
+            <!-- নেক্সট বাটন -->
+            <button class="next-btn" onclick="nextStep()">Next Step →</button>
         </div>
     </div>
 
@@ -265,166 +463,80 @@
             document.getElementById('username').textContent = '@' + user.username;
         }
         
+        // হোম পেজ দেখানো
+        function showHomePage() {
+            document.getElementById('homePage').style.display = 'block';
+            document.getElementById('sellPage').style.display = 'none';
+        }
+        
+        // সেল পেজ দেখানো
+        function showSellPage() {
+            tg.HapticFeedback.impactOccurred('medium');
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('sellPage').style.display = 'block';
+            
+            // ইউজারনেম অটো ফিল
+            if (user?.username) {
+                document.getElementById('senderUsername').value = '@' + user.username;
+            }
+        }
+        
         // জয়েন চ্যানেল
         function joinChannel() {
             tg.HapticFeedback.impactOccurred('light');
             tg.openTelegramLink('https://t.me/your_channel'); // আপনার চ্যানেল লিংক দিন
         }
         
-        // সেল পেজে যাওয়ার ফাংশন
-        function goToSellPage() {
+        // কপি টু ক্লিপবোর্ড
+        function copyToClipboard() {
+            const text = 'shuvo46637';
+            navigator.clipboard.writeText(text);
             tg.HapticFeedback.impactOccurred('medium');
-            
-            // সেল পেজের HTML
-            const sellPageHTML = `
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>NIVA BUYER ZONE</title>
-                    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-                    <style>
-                        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-                        body { background: #0B0E1A; min-height: 100vh; color: white; padding: 20px; }
-                        .container { max-width: 400px; margin: 0 auto; }
-                        .header { font-size: 24px; font-weight: bold; margin-bottom: 20px; color: #00ff88; }
-                        .sub-header { color: #888; font-size: 14px; margin-bottom: 30px; }
-                        .send-box { background: #1E2333; padding: 20px; border-radius: 20px; margin-bottom: 25px; }
-                        .send-label { color: #888; font-size: 14px; margin-bottom: 10px; }
-                        .send-id { background: #2A2F3F; padding: 15px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; margin: 10px 0; }
-                        .id-text { font-size: 18px; font-weight: bold; color: #00ff88; }
-                        .copy-btn { background: #00ff88; color: #0B0E1A; border: none; padding: 8px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; }
-                        .form-group { margin-bottom: 20px; }
-                        .form-label { color: #888; font-size: 14px; margin-bottom: 8px; display: block; }
-                        .form-input { width: 100%; background: #1E2333; border: 1px solid #2A2F3F; padding: 15px; border-radius: 15px; color: white; font-size: 16px; }
-                        .form-input:focus { outline: none; border-color: #00ff88; }
-                        .rate-box { background: #1E2333; padding: 20px; border-radius: 20px; margin: 25px 0; display: flex; justify-content: space-between; align-items: center; }
-                        .rate-info { text-align: center; }
-                        .rate-label { color: #888; font-size: 12px; margin-bottom: 5px; }
-                        .rate-value { font-size: 24px; font-weight: bold; color: #00ff88; }
-                        .total-value { font-size: 20px; font-weight: bold; }
-                        .next-btn { background: linear-gradient(90deg, #00ff88, #00cc66); color: #0B0E1A; border: none; padding: 20px; border-radius: 50px; width: 100%; font-size: 20px; font-weight: bold; cursor: pointer; margin-top: 20px; }
-                        .back-btn { background: transparent; color: #888; border: 1px solid #2A2F3F; padding: 12px 20px; border-radius: 10px; font-size: 16px; cursor: pointer; margin-bottom: 20px; width: 100%; }
-                        .rate-note { color: #00ff88; font-size: 12px; margin-top: 5px; text-align: right; }
-                    </style>
-                </head>
-                <body>
-                    <div class="container">
-                        <button class="back-btn" onclick="goBack()">← ব্যাক টু হোম</button>
-                        <div class="header">NIVA BUYER ZONE</div>
-                        <div class="sub-header">Sell Niva Coin. Enter your details carefully.</div>
-                        
-                        <div class="send-box">
-                            <div class="send-label">📤 SEND COINS TO THIS ID</div>
-                            <div class="send-id">
-                                <span class="id-text" id="walletId">shuvo46637</span>
-                                <button class="copy-btn" onclick="copyToClipboard()">📋 COPY ID</button>
-                            </div>
-                            <div class="rate-note">💰 প্রতি 1000 কয়েন = 3₺</div>
-                        </div>
+            tg.showAlert('✅ ID কপি করা হয়েছে!');
+        }
+        
+        // টোটাল ক্যালকুলেট (প্রতি 1000 = 3 টাকা)
+        function calculateTotal() {
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            if (amount >= 1000) {
+                const total = (amount / 1000) * 3;
+                document.getElementById('total').textContent = total.toFixed(2) + ' ₺';
+            } else {
+                document.getElementById('total').textContent = '0.00 ₺';
+            }
+        }
+        
+        // নেক্সট স্টেপ
+        function nextStep() {
+            const amount = document.getElementById('amount').value;
+            const username = document.getElementById('senderUsername').value;
+            const bkash = document.getElementById('bkash').value;
+            const paymentNumber = document.getElementById('paymentNumber').value;
 
-                        <div class="form-group">
-                            <label class="form-label">💰 Amount (Min 1000)</label>
-                            <input type="number" class="form-input" id="amount" placeholder="Enter amount" min="1000" oninput="calculateTotal()">
-                        </div>
+            if (!amount || amount < 1000) {
+                tg.showAlert('⚠️ ন্যূনতম 1000 কয়েন দিন');
+                return;
+            }
+            if (!username) {
+                tg.showAlert('⚠️ ইউজারনেম দিন');
+                return;
+            }
+            if (!bkash) {
+                tg.showAlert('⚠️ বিকাশ নাম্বার দিন');
+                return;
+            }
+            if (!paymentNumber) {
+                tg.showAlert('⚠️ পেমেন্ট নাম্বার দিন');
+                return;
+            }
 
-                        <div class="form-group">
-                            <label class="form-label">👤 Sender Username</label>
-                            <input type="text" class="form-input" id="username" placeholder="@username">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">🏦 Bkash</label>
-                            <input type="text" class="form-input" id="bkash" placeholder="Bkash number">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">📱 Payment Number</label>
-                            <input type="text" class="form-input" id="paymentNumber" placeholder="Your payment number">
-                        </div>
-
-                        <div class="rate-box">
-                            <div class="rate-info">
-                                <div class="rate-label">Applied Rate</div>
-                                <div class="rate-value" id="appliedRate">3₺</div>
-                            </div>
-                            <div class="rate-info">
-                                <div class="rate-label">FEE</div>
-                                <div class="fee-value" id="fee">-0₺</div>
-                            </div>
-                            <div class="rate-info">
-                                <div class="rate-label">TOTAL</div>
-                                <div class="total-value" id="total">0.00 ₺</div>
-                            </div>
-                        </div>
-
-                        <button class="next-btn" onclick="nextStep()">Next Step →</button>
-                    </div>
-
-                    <script>
-                        const tg = Telegram.WebApp;
-                        tg.ready();
-                        tg.expand();
-
-                        function copyToClipboard() {
-                            const text = 'shuvo46637';
-                            navigator.clipboard.writeText(text);
-                            tg.HapticFeedback.impactOccurred('medium');
-                            tg.showAlert('✅ ID কপি করা হয়েছে!');
-                        }
-
-                        function calculateTotal() {
-                            const amount = parseFloat(document.getElementById('amount').value) || 0;
-                            if (amount >= 1000) {
-                                const total = (amount / 1000) * 3;
-                                document.getElementById('total').textContent = total.toFixed(2) + ' ₺';
-                            } else {
-                                document.getElementById('total').textContent = '0.00 ₺';
-                            }
-                        }
-
-                        function nextStep() {
-                            const amount = document.getElementById('amount').value;
-                            const username = document.getElementById('username').value;
-                            const bkash = document.getElementById('bkash').value;
-                            const paymentNumber = document.getElementById('paymentNumber').value;
-
-                            if (!amount || amount < 1000) {
-                                tg.showAlert('⚠️ ন্যূনতম 1000 কয়েন দিন');
-                                return;
-                            }
-                            if (!username || !bkash || !paymentNumber) {
-                                tg.showAlert('⚠️ সব তথ্য দিন');
-                                return;
-                            }
-
-                            const total = (amount / 1000) * 3;
-                            tg.showPopup({
-                                title: '✅ কনফার্মেশন',
-                                message: \`\${amount} কয়েন = \${total.toFixed(2)}₺\\n\\nআইডি: shuvo46637\`,
-                                buttons: [{type: 'ok'}]
-                            });
-                        }
-
-                        function goBack() {
-                            window.location.reload();
-                        }
-
-                        const user = tg.initDataUnsafe?.user;
-                        if (user?.username) {
-                            document.getElementById('username').value = '@' + user.username;
-                        }
-                    </script>
-                </body>
-                </html>
-            `;
-            
-            // নতুন পেজ ওপেন করুন
-            document.open();
-            document.write(sellPageHTML);
-            document.close();
+            const total = (amount / 1000) * 3;
+            tg.showPopup({
+                title: '✅ কনফার্মেশন',
+                message: `${amount} কয়েন = ${total.toFixed(2)}₺\n\nআইডি: shuvo46637`,
+                buttons: [{type: 'ok', text: 'ঠিক আছে'}]
+            });
         }
     </script>
 </body>
- </html>
+                    </html>
