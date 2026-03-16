@@ -333,7 +333,7 @@
             margin-top: 20px;
         }
         
-        /* রিভিউ পেজ - আপনার ছবির মতো */
+        /* রিভিউ পেজ */
         .review-container {
             background: #1E2333;
             border-radius: 20px;
@@ -525,7 +525,7 @@
         </div>
     </div>
 
-    <!-- রিভিউ পেজ (৩য় পেজ - আপনার ছবির মতো) -->
+    <!-- রিভিউ পেজ (৩য় পেজ) -->
     <div id="reviewPage" style="display: none;">
         <div class="container">
             <div class="sell-header">FAST NIVA SELL</div>
@@ -576,8 +576,13 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
         
+        // ⚠️ এখানে আপনার অ্যাডমিন টেলিগ্রাম আইডি দিন
+        const ADMIN_ID = 123456789; // আপনার টেলিগ্রাম ইউজার আইডি দিন
+        
         // ইউজারের তথ্য
         const user = tg.initDataUnsafe?.user;
+        console.log('User Info:', user); // ইউজার আইডি দেখতে কনসোল চেক করুন
+        
         if (user?.username) {
             document.getElementById('username').textContent = '@' + user.username;
         }
@@ -637,7 +642,7 @@
         // জয়েন চ্যানেল
         function joinChannel() {
             tg.HapticFeedback.impactOccurred('light');
-            tg.openTelegramLink('https://t.me/your_channel');
+            tg.openTelegramLink('https://t.me/your_channel'); // আপনার চ্যানেল লিংক দিন
         }
         
         // কপি টু ক্লিপবোর্ড
@@ -659,13 +664,62 @@
             }
         }
         
-        // কনফার্ম সাবমিট
+        // কনফার্ম সাবমিট - এখানে নোটিফিকেশন পাঠাবে
         function confirmSubmit() {
             tg.HapticFeedback.impactOccurred('heavy');
             
+            const amount = document.getElementById('reviewAmount').textContent;
+            const sender = document.getElementById('reviewSender').textContent;
+            const account = document.getElementById('reviewAccount').textContent;
+            const total = document.getElementById('reviewTotal').textContent;
+            
+            // ইউজারের তথ্য
+            const userId = user?.id || 'Unknown';
+            const username = user?.username ? '@' + user.username : 'No username';
+            const firstName = user?.first_name || 'Unknown';
+            
+            // 📨 অ্যাডমিনের জন্য মেসেজ তৈরি
+            const adminMessage = `
+🔔 **নতুন সেল রিকোয়েস্ট!**
+
+👤 **ইউজার ডিটেইলস:**
+• আইডি: ${userId}
+• ইউজারনেম: ${username}
+• নাম: ${firstName}
+
+💰 **অর্ডার ডিটেইলস:**
+• পরিমাণ: ${amount} কয়েন
+• সেন্ডার: ${sender}
+• বিকাশ: ${account}
+• টোটাল: ${total}
+
+⏰ সময়: ${new Date().toLocaleString('bn-BD')}
+
+➡️ দয়া করে চেক করুন এবং যোগাযোগ করুন।
+            `;
+            
+            // টেলিগ্রাম বটের মাধ্যমে মেসেজ পাঠানোর API কল
+            // নোট: এটা শুধুমাত্র যদি আপনার বটের ব্যাকএন্ড থাকে তাহলে কাজ করবে
+            
+            // আমরা এখানে টেলিগ্রাম ওয়েবঅ্যাপের মাধ্যমে সরাসরি অ্যাডমিনকে মেসেজ পাঠাতে পারি না
+            // কিন্তু আমরা ইউজারকে জানাতে পারি এবং কনসোলে লগ রাখতে পারি
+            
+            console.log('📨 নতুন অর্ডার:', {
+                admin: ADMIN_ID,
+                user: userId,
+                order: {
+                    amount: amount,
+                    sender: sender,
+                    account: account,
+                    total: total,
+                    time: new Date().toISOString()
+                }
+            });
+            
+            // ইউজারকে দেখান
             tg.showPopup({
                 title: '✅ সফল হয়েছে!',
-                message: `আপনার সেল রিকোয়েস্ট জমা হয়েছে।\n\nঅ্যাডমিন শীঘ্রই যোগাযোগ করবে।`,
+                message: `আপনার সেল রিকোয়েস্ট জমা হয়েছে।\n\nঅ্যাডমিন শীঘ্রই যোগাযোগ করবে।\n\nঅর্ডার ডিটেইলস:\n${amount} কয়েন = ${total}`,
                 buttons: [{type: 'ok', text: 'ঠিক আছে'}]
             });
             
@@ -681,6 +735,28 @@
                 document.getElementById('amount').value = '';
                 document.getElementById('bkash').value = '';
             }, 2000);
+            
+            // ⚠️ অ্যাডমিনকে নোটিফিকেশন পাঠানোর জন্য
+            // আপনি চাইলে এই URL এ রিকোয়েস্ট পাঠাতে পারেন
+            sendNotificationToAdmin(adminMessage);
+        }
+        
+        // নোটিফিকেশন পাঠানোর ফাংশন (ঐচ্ছিক)
+        function sendNotificationToAdmin(message) {
+            // এটা শুধুমাত্র যদি আপনার কোনো API থাকে তাহলে কাজ করবে
+            // যেমন: আপনার বটের জন্য একটি সিম্পল API বানাতে পারেন
+            
+            fetch('https://your-api.com/notify-admin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    admin_id: ADMIN_ID,
+                    message: message,
+                    user_id: user?.id
+                })
+            }).catch(err => console.log('নোটিফিকেশন পাঠানো যায়নি:', err));
         }
     </script>
 </body>
