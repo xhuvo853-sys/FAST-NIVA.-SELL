@@ -171,11 +171,6 @@
             border-color: #00ff88;
         }
         
-        .coin-card.selected {
-            border: 2px solid #00ff88;
-            background: #1a1f30;
-        }
-        
         .coin-header {
             display: flex;
             align-items: center;
@@ -237,323 +232,187 @@
             text-transform: uppercase;
         }
         
-        /* সেল ফর্ম */
-        .back-btn {
-            background: transparent;
-            color: #888;
-            border: 1px solid #2A2F3F;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            width: 100%;
+        /* অ্যাডমিন প্যানেল - আপনার ছবির মতো */
+        .admin-container {
+            padding: 20px;
         }
         
-        .sell-header {
+        .admin-header {
             font-size: 24px;
             font-weight: bold;
-            margin-bottom: 10px;
             color: #00ff88;
+            margin-bottom: 10px;
         }
         
-        .sell-subheader {
+        .admin-subheader {
             color: #888;
             font-size: 14px;
             margin-bottom: 30px;
         }
         
-        .send-box {
-            background: #1E2333;
-            padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 25px;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
         }
         
-        .send-label {
+        .stat-box {
+            background: #1E2333;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #2A2F3F;
+        }
+        
+        .stat-label {
             color: #888;
-            font-size: 14px;
+            font-size: 12px;
             margin-bottom: 10px;
         }
         
-        .send-id {
-            background: #2A2F3F;
-            padding: 15px;
-            border-radius: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
         }
         
-        .id-text {
+        .stat-pending { color: #ffaa00; }
+        .stat-approved { color: #00ff88; }
+        .stat-rejected { color: #ff4444; }
+        
+        .order-card {
+            background: #1E2333;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #2A2F3F;
+        }
+        
+        .order-user {
             font-size: 18px;
             font-weight: bold;
             color: #00ff88;
+            margin-bottom: 15px;
         }
         
-        .copy-btn {
-            background: #00ff88;
-            color: #0B0E1A;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .coin-selector {
-            display: flex;
-            gap: 10px;
+        .order-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
             margin-bottom: 20px;
         }
         
-        .coin-option {
-            flex: 1;
-            background: #1E2333;
-            padding: 15px;
-            border-radius: 15px;
-            text-align: center;
-            cursor: pointer;
-            border: 1px solid #2A2F3F;
+        .order-field {
+            background: #0f1422;
+            padding: 12px;
+            border-radius: 12px;
         }
         
-        .coin-option.selected {
-            border: 2px solid #00ff88;
-            background: #2A2F3F;
-        }
-        
-        .coin-option-name {
-            font-weight: bold;
+        .field-label {
+            color: #888;
+            font-size: 12px;
             margin-bottom: 5px;
         }
         
-        .coin-option-rate {
-            color: #00ff88;
-            font-size: 14px;
-        }
-        
-        /* পেমেন্ট মেথড সিলেক্টর - নতুন */
-        .payment-selector {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .payment-option {
-            flex: 1;
-            background: #1E2333;
-            padding: 15px;
-            border-radius: 15px;
-            text-align: center;
-            cursor: pointer;
-            border: 1px solid #2A2F3F;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .payment-option.selected {
-            border: 2px solid #00ff88;
-            background: #2A2F3F;
-        }
-        
-        .payment-icon {
-            font-size: 20px;
-        }
-        
-        .payment-name {
-            font-weight: 500;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-label {
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 8px;
-            display: block;
-        }
-        
-        .form-input {
-            width: 100%;
-            background: #1E2333;
-            border: 1px solid #2A2F3F;
-            padding: 15px;
-            border-radius: 15px;
-            color: white;
+        .field-value {
             font-size: 16px;
+            font-weight: 600;
         }
         
-        .form-input:focus {
-            outline: none;
-            border-color: #00ff88;
-        }
-        
-        .rate-box2 {
-            background: #1E2333;
-            padding: 20px;
-            border-radius: 20px;
-            margin: 25px 0;
+        .copy-section {
+            background: #0f1422;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        
+        .copy-text {
+            color: #00ff88;
+            font-size: 16px;
+        }
+        
+        .copy-button {
+            background: #00ff88;
+            color: #0a0f1e;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .approve-btn, .reject-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .approve-btn {
+            background: #00ff88;
+            color: #0a0f1e;
+        }
+        
+        .reject-btn {
+            background: #ff4444;
+            color: white;
         }
         
         .rate-info {
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #2A2F3F;
         }
         
-        .rate-label2 {
+        .target-id {
             color: #888;
-            font-size: 12px;
-            margin-bottom: 5px;
+            font-size: 14px;
         }
         
-        .rate-value2 {
-            font-size: 24px;
-            font-weight: bold;
+        .target-value {
             color: #00ff88;
-        }
-        
-        .fee-value {
-            font-size: 16px;
-            color: #ff4444;
-        }
-        
-        .total-value {
-            font-size: 20px;
             font-weight: bold;
         }
         
-        .next-btn {
-            background: linear-gradient(90deg, #00ff88, #00cc66);
-            color: #0B0E1A;
-            border: none;
-            padding: 20px;
-            border-radius: 50px;
+        .admin-login {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .password-input {
             width: 100%;
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        
-        /* রিভিউ পেজ */
-        .review-container {
-            background: #1E2333;
-            border-radius: 20px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-        
-        .review-title {
-            font-size: 22px;
-            font-weight: bold;
-            color: #00ff88;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .review-subtitle {
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .review-item {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #2A2F3F;
-        }
-        
-        .review-item-label {
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        
-        .review-item-value {
-            font-size: 18px;
-            font-weight: 600;
-            color: white;
-        }
-        
-        .review-total-box {
-            background: #0f1422;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 25px 0;
-            text-align: center;
-        }
-        
-        .review-total-label {
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        
-        .review-total-value {
-            font-size: 32px;
-            font-weight: bold;
-            color: #00ff88;
-        }
-        
-        .confirm-btn {
-            background: linear-gradient(90deg, #00ff88, #00cc66);
-            color: #0B0E1A;
-            border: none;
-            padding: 18px;
-            border-radius: 15px;
-            width: 100%;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            margin: 10px 0;
-        }
-        
-        .edit-btn {
-            background: transparent;
-            color: #888;
-            border: 1px solid #2A2F3F;
             padding: 15px;
-            border-radius: 15px;
-            width: 100%;
+            background: #1E2333;
+            border: 1px solid #2A2F3F;
+            border-radius: 10px;
+            color: white;
             font-size: 16px;
-            cursor: pointer;
-            margin-bottom: 10px;
-        }
-        
-        hr {
-            border: 0.5px solid #2A2F3F;
             margin: 20px 0;
         }
         
-        /* স্ট্যাটাস ব্যাজ */
-        .status-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-        .status-pending {
-            background: #ffaa00;
-            color: #0a0f1e;
-        }
-        
-        .status-approved {
+        .login-btn {
             background: #00ff88;
             color: #0a0f1e;
-        }
-        
-        .status-rejected {
-            background: #ff4444;
-            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
         }
     </style>
 </head>
@@ -577,7 +436,7 @@
             </div>
 
             <button class="join-btn" onclick="joinChannel()">
-                <span>📢</span> Join Channel Updates, offers & proofs
+                <span>📢</span> Join Channel
             </button>
 
             <div class="market-section">
@@ -593,15 +452,11 @@
                     <div class="coin-card" onclick="selectCoin('niva')">
                         <div class="coin-header">
                             <span class="coin-name">Niva Coin</span>
-                            <span class="coin-badge">Popular</span>
+                            <span class="coin-badge">2.8₮</span>
                         </div>
                         <div class="coin-rate-box">
                             <div class="rate-row">
-                                <span class="rate-label">User Rate</span>
-                                <span class="rate-value">2.8₮</span>
-                            </div>
-                            <div class="rate-row">
-                                <span class="rate-label">Admin Rate</span>
+                                <span class="rate-label">Per 1000</span>
                                 <span class="rate-value">2.8₮</span>
                             </div>
                         </div>
@@ -611,15 +466,11 @@
                     <div class="coin-card" onclick="selectCoin('ns')">
                         <div class="coin-header">
                             <span class="coin-name">Ns Coin</span>
-                            <span class="coin-badge" style="background: #ffaa00;">Special</span>
+                            <span class="coin-badge" style="background: #ffaa00;">11₮</span>
                         </div>
                         <div class="coin-rate-box">
                             <div class="rate-row">
-                                <span class="rate-label">User Rate</span>
-                                <span class="rate-value">11₮</span>
-                            </div>
-                            <div class="rate-row">
-                                <span class="rate-label">Admin Rate</span>
+                                <span class="rate-label">Per 1000</span>
                                 <span class="rate-value">11₮</span>
                             </div>
                         </div>
@@ -634,137 +485,65 @@
     <!-- সেল ফর্ম পেজ -->
     <div id="sellPage" style="display: none;">
         <div class="container">
-            <button class="back-btn" onclick="showHomePage()">← ব্যাক টু হোম</button>
-            
-            <div class="sell-header">FAST NIVA SELL</div>
-            <div class="sell-subheader">Sell your coins. Enter details carefully.</div>
-            
-            <!-- কয়েন সিলেক্টর -->
-            <div class="coin-selector">
-                <div class="coin-option" id="coinNiva" onclick="setCoinType('niva')">
-                    <div class="coin-option-name">Niva</div>
-                    <div class="coin-option-rate">2.8₮</div>
-                </div>
-                <div class="coin-option" id="coinNs" onclick="setCoinType('ns')">
-                    <div class="coin-option-name">Ns</div>
-                    <div class="coin-option-rate">11₮</div>
-                </div>
-            </div>
+            <button class="join-btn" onclick="showHomePage()">← Back</button>
             
             <div class="send-box">
-                <div class="send-label">📤 SEND COINS TO THIS ID</div>
+                <div class="send-label">📤 SEND TO</div>
                 <div class="send-id">
-                    <span class="id-text" id="walletId">shuvo46637</span>
-                    <button class="copy-btn" onclick="copyToClipboard()">📋 COPY ID</button>
+                    <span class="id-text">niva_buyer_zone_1</span>
+                    <button class="copy-btn" onclick="copyId()">COPY</button>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="form-label">💰 Amount (Min 1000)</label>
-                <input type="number" class="form-input" id="amount" placeholder="Enter amount" min="1000" oninput="calculateTotal()">
+                <input type="number" class="form-input" id="amount" min="1000" oninput="calcTotal()">
             </div>
 
             <div class="form-group">
-                <label class="form-label">👤 Sender Username</label>
-                <input type="text" class="form-input" id="senderUsername" placeholder="@username">
-            </div>
-
-            <!-- পেমেন্ট মেথড সিলেক্টর - বিকাশ + নগদ -->
-            <div class="form-group">
-                <label class="form-label">🏦 Payment Method</label>
-                <div class="payment-selector">
-                    <div class="payment-option" id="paymentBkash" onclick="setPaymentMethod('bkash')">
-                        <span class="payment-icon">💳</span>
-                        <span class="payment-name">Bkash</span>
-                    </div>
-                    <div class="payment-option" id="paymentNagad" onclick="setPaymentMethod('nagad')">
-                        <span class="payment-icon">📱</span>
-                        <span class="payment-name">Nagad</span>
-                    </div>
-                </div>
+                <label class="form-label">👤 Username</label>
+                <input type="text" class="form-input" id="username">
             </div>
 
             <div class="form-group">
-                <label class="form-label" id="accountLabel">📱 Account Number</label>
-                <input type="text" class="form-input" id="accountNumber" placeholder="Enter account number">
+                <label class="form-label">🏦 Bkash</label>
+                <input type="text" class="form-input" id="bkash">
             </div>
 
             <div class="rate-box2">
                 <div class="rate-info">
-                    <div class="rate-label2">Rate</div>
-                    <div class="rate-value2" id="rate">2.8₮</div>
-                </div>
-                <div class="rate-info">
-                    <div class="rate-label2">Fee (5₮)</div>
-                    <div class="fee-value" id="fee">-5₮</div>
-                </div>
-                <div class="rate-info">
-                    <div class="rate-label2">TOTAL</div>
+                    <div class="rate-label2">Total</div>
                     <div class="total-value" id="total">0.00 ₺</div>
                 </div>
             </div>
 
-            <button class="next-btn" onclick="showReviewPage()">Next Step →</button>
+            <button class="next-btn" onclick="submitOrder()">Submit</button>
         </div>
     </div>
 
-    <!-- রিভিউ পেজ -->
-    <div id="reviewPage" style="display: none;">
-        <div class="container">
-            <div class="sell-header">FAST NIVA SELL</div>
-            
-            <hr>
-            
-            <div class="review-title">Review Details</div>
-            <div class="review-subtitle">Please check everything before final submission.</div>
-            
-            <div class="review-container">
-                <div class="review-item">
-                    <div class="review-item-label">COIN:</div>
-                    <div class="review-item-value" id="reviewCoin">Niva coin</div>
-                </div>
-                
-                <div class="review-item">
-                    <div class="review-item-label">Amount:</div>
-                    <div class="review-item-value" id="reviewAmount"></div>
-                </div>
-                
-                <div class="review-item">
-                    <div class="review-item-label">Sender:</div>
-                    <div class="review-item-value" id="reviewSender"></div>
-                </div>
-                
-                <div class="review-item">
-                    <div class="review-item-label">Payment Method:</div>
-                    <div class="review-item-value" id="reviewMethod">Bkash</div>
-                </div>
-                
-                <div class="review-item">
-                    <div class="review-item-label">Account No:</div>
-                    <div class="review-item-value" id="reviewAccount"></div>
-                </div>
-                
-                <div class="review-item">
-                    <div class="review-item-label">Fee:</div>
-                    <div class="review-item-value" id="reviewFee">5₺</div>
-                </div>
-            </div>
-            
-            <div class="review-total-box">
-                <div class="review-total-label">You Will Get (After Fee):</div>
-                <div class="review-total-value" id="reviewTotal"></div>
-            </div>
-            
-            <button class="confirm-btn" onclick="confirmSubmit()">Confirm & Submit ✔</button>
-            <button class="edit-btn" onclick="showSellPage()">Go Back & Edit</button>
-        </div>
-    </div>
+    <!-- অ্যাডমিন প্যানেল - আপনার ছবির মতো -->
+    <div id="adminPage" style="display: none;">
+        <div class="container admin-container">
+            <div class="admin-header">⚡ ADMIN COMMAND CENTER</div>
+            <div class="admin-subheader">Manage Orders & Rates</div>
 
-    <!-- হিস্ট্রি পেজ -->
-    <div id="historyPage" style="display: none;">
-        <div class="container">
-            <button class="back-btn" onclick="showHomePage()">← ব্যাক টু হোম</button>
-            <h2 style="color:#00ff88; margin-bottom:20px;">📋 Your Orders</h2>
+            <!-- পরিসংখ্যান -->
+            <div class="stats-grid" id="adminStats">
+                <div class="stat-box">
+                    <div class="stat-label">⏳ PENDING</div>
+                    <div class="stat-number stat-pending" id="pendingCount">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">✅ APPROVED</div>
+                    <div class="stat-number stat-approved" id="approvedCount">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">❌ REJECTED</div>
+                    <div class="stat-number stat-rejected" id="rejectedCount">0</div>
+                </div>
+            </div>
+
+            <!-- অর্ডার লিস্ট -->
             <div id="ordersList"></div>
         </div>
     </div>
@@ -773,324 +552,275 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
         
-        // বটের তথ্য
+        // কনফিগারেশন
         const BOT_TOKEN = '8479046315:AAFmBZplaAJRWsa16xuveinsWCn400i7x3w';
         const ADMIN_ID = '7816083990';
+        const ADMIN_PASSWORD = 'niva123';
         
-        // স্টেট ম্যানেজমেন্ট
         let selectedCoin = 'niva';
-        let selectedPayment = 'bkash';
-        const coinRates = {
-            niva: 2.8,
-            ns: 11
-        };
-        const FEE = 5; // ৫ টাকা ফি
-        
+        const coinRates = { niva: 2.8, ns: 11 };
         const user = tg.initDataUnsafe?.user;
         
-        // ইউজার ইনফো সেট
+        // ইউজার ইনফো
         if (user?.username) {
-            document.getElementById('username').textContent = '@' + user.username;
-            document.getElementById('senderUsername').value = '@' + user.username;
+            document.getElementById('username').value = '@' + user.username;
         }
-        
-        if (user?.first_name) {
-            document.getElementById('avatar').textContent = user.first_name.charAt(0).toUpperCase();
-        }
-        
-        // লোকাল স্টোরেজ থেকে অর্ডার লোড
-        let orders = JSON.parse(localStorage.getItem('orders_' + (user?.id || 'guest'))) || [];
-        let successCount = parseInt(localStorage.getItem('successCount_' + (user?.id || 'guest'))) || 0;
-        document.getElementById('successCount').textContent = successCount;
         
         // পেজ নেভিগেশন
         function showHomePage() {
             document.getElementById('homePage').style.display = 'block';
             document.getElementById('sellPage').style.display = 'none';
-            document.getElementById('reviewPage').style.display = 'none';
-            document.getElementById('historyPage').style.display = 'none';
+            document.getElementById('adminPage').style.display = 'none';
+            loadSuccessCount();
         }
         
         function showSellPage() {
-            tg.HapticFeedback.impactOccurred('medium');
             document.getElementById('homePage').style.display = 'none';
             document.getElementById('sellPage').style.display = 'block';
-            document.getElementById('reviewPage').style.display = 'none';
-            document.getElementById('historyPage').style.display = 'none';
-            
-            updateCoinSelector();
-            updatePaymentSelector();
+            document.getElementById('adminPage').style.display = 'none';
         }
         
-        function showReviewPage() {
-            const amount = document.getElementById('amount').value;
-            const username = document.getElementById('senderUsername').value;
-            const account = document.getElementById('accountNumber').value;
-
-            if (!amount || amount < 1000) {
-                tg.showAlert('⚠️ ন্যূনতম 1000 কয়েন দিন');
-                return;
-            }
-            if (!username) {
-                tg.showAlert('⚠️ ইউজারনেম দিন');
-                return;
-            }
-            if (!account) {
-                tg.showAlert('⚠️ অ্যাকাউন্ট নাম্বার দিন');
-                return;
-            }
-
-            const rate = coinRates[selectedCoin];
-            const subtotal = (amount / 1000) * rate;
-            const total = subtotal - FEE;
-            
-            // রিভিউ পেজ আপডেট
-            document.getElementById('reviewCoin').textContent = selectedCoin === 'niva' ? 'Niva Coin' : 'Ns Coin';
-            document.getElementById('reviewAmount').textContent = amount;
-            document.getElementById('reviewSender').textContent = username;
-            document.getElementById('reviewMethod').textContent = selectedPayment === 'bkash' ? 'Bkash' : 'Nagad';
-            document.getElementById('reviewAccount').textContent = account;
-            document.getElementById('reviewTotal').textContent = total.toFixed(2) + ' ₺';
-            
-            tg.HapticFeedback.impactOccurred('light');
-            document.getElementById('homePage').style.display = 'none';
-            document.getElementById('sellPage').style.display = 'none';
-            document.getElementById('reviewPage').style.display = 'block';
-            document.getElementById('historyPage').style.display = 'none';
-        }
-        
-        function showHistory() {
-            document.getElementById('homePage').style.display = 'none';
-            document.getElementById('sellPage').style.display = 'none';
-            document.getElementById('reviewPage').style.display = 'none';
-            document.getElementById('historyPage').style.display = 'block';
-            displayOrders();
-        }
-        
-        // কয়েন সিলেক্ট
-        function selectCoin(coinType) {
-            selectedCoin = coinType;
-            tg.HapticFeedback.impactOccurred('light');
-            tg.showAlert(`${coinType === 'niva' ? 'Niva' : 'Ns'} Coin সিলেক্ট করা হয়েছে`);
-        }
-        
-        function setCoinType(coinType) {
-            selectedCoin = coinType;
-            updateCoinSelector();
-            calculateTotal();
-        }
-        
-        function updateCoinSelector() {
-            document.getElementById('coinNiva').classList.remove('selected');
-            document.getElementById('coinNs').classList.remove('selected');
-            
-            if (selectedCoin === 'niva') {
-                document.getElementById('coinNiva').classList.add('selected');
-                document.getElementById('rate').textContent = coinRates.niva + '₮';
-            } else {
-                document.getElementById('coinNs').classList.add('selected');
-                document.getElementById('rate').textContent = coinRates.ns + '₮';
-            }
-        }
-        
-        // পেমেন্ট মেথড সিলেক্ট
-        function setPaymentMethod(method) {
-            selectedPayment = method;
-            updatePaymentSelector();
-        }
-        
-        function updatePaymentSelector() {
-            document.getElementById('paymentBkash').classList.remove('selected');
-            document.getElementById('paymentNagad').classList.remove('selected');
-            
-            if (selectedPayment === 'bkash') {
-                document.getElementById('paymentBkash').classList.add('selected');
-                document.getElementById('accountLabel').textContent = '📱 Bkash Number';
-            } else {
-                document.getElementById('paymentNagad').classList.add('selected');
-                document.getElementById('accountLabel').textContent = '📱 Nagad Number';
-            }
-        }
-        
-        function goToSell() {
-            showSellPage();
-        }
-        
-        function joinChannel() {
-            tg.HapticFeedback.impactOccurred('light');
-            tg.openTelegramLink('https://t.me/incomebd1k');
-        }
-        
-        function copyToClipboard() {
-            navigator.clipboard.writeText('shuvo46637');
-            tg.HapticFeedback.impactOccurred('medium');
-            tg.showAlert('✅ ID কপি করা হয়েছে!');
-        }
-        
-        function calculateTotal() {
-            const amount = parseFloat(document.getElementById('amount').value) || 0;
-            if (amount >= 1000) {
-                const rate = coinRates[selectedCoin];
-                const subtotal = (amount / 1000) * rate;
-                const total = subtotal - FEE;
-                document.getElementById('total').textContent = total.toFixed(2) + ' ₺';
-            } else {
-                document.getElementById('total').textContent = '0.00 ₺';
-            }
-        }
-        
-        // অর্ডার সাবমিট
-        function confirmSubmit() {
-            tg.HapticFeedback.impactOccurred('heavy');
-            
-            const amount = document.getElementById('reviewAmount').textContent;
-            const sender = document.getElementById('reviewSender').textContent;
-            const account = document.getElementById('reviewAccount').textContent;
-            const total = document.getElementById('reviewTotal').textContent;
-            const coin = document.getElementById('reviewCoin').textContent;
-            const method = document.getElementById('reviewMethod').textContent;
-            
-            // নতুন অর্ডার তৈরি
-            const newOrder = {
-                id: 'ORD' + Date.now(),
-                coin: coin,
-                amount: amount,
-                sender: sender,
-                method: method,
-                account: account,
-                total: total,
-                status: 'pending',
-                time: new Date().toLocaleString('bn-BD')
-            };
-            
-            // অর্ডার সেভ
-            orders.push(newOrder);
-            localStorage.setItem('orders_' + (user?.id || 'guest'), JSON.stringify(orders));
-            
-            // অ্যাডমিনকে নোটিফিকেশন
-            const message = `
-🔔 **নতুন সেল অর্ডার!**
-
-🪙 **কয়েন:** ${coin}
-👤 **ইউজার:** ${sender}
-💰 **পরিমাণ:** ${amount}
-🏦 **পেমেন্ট:** ${method}
-📱 **অ্যাকাউন্ট:** ${account}
-💵 **টোটাল (ফি বাদে):** ${total}
-
-⏰ সময়: ${new Date().toLocaleString('bn-BD')}
-📊 **স্ট্যাটাস:** পেন্ডিং
-            `;
-            
-            sendTelegramNotification(message);
-            
-            tg.showPopup({
-                title: '✅ অর্ডার জমা হয়েছে!',
-                message: `আপনার অর্ডার পেন্ডিং আছে। অ্যাডমিন এপ্রুভ করার পর সাকসেস কাউন্ট বাড়বে।`,
-                buttons: [{type: 'ok', text: 'ঠিক আছে'}]
-            });
-            
-            // হোমে ফেরত
-            setTimeout(() => {
+        function showAdminPage() {
+            // চেক করা যে ইউজার অ্যাডমিন কিনা
+            if (user?.id != ADMIN_ID) {
+                tg.showAlert('⛔ অনুমতি নেই! শুধু অ্যাডমিন এই পেজ দেখতে পারেন।');
                 showHomePage();
-                document.getElementById('amount').value = '';
-                document.getElementById('accountNumber').value = '';
-            }, 2000);
-        }
-        
-        // নোটিফিকেশন পাঠানো
-        async function sendTelegramNotification(message) {
-            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-            
-            try {
-                await fetch(url, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        chat_id: ADMIN_ID,
-                        text: message,
-                        parse_mode: 'Markdown'
-                    })
-                });
-            } catch (error) {
-                console.log('Error:', error);
+                return;
             }
+            
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('sellPage').style.display = 'none';
+            document.getElementById('adminPage').style.display = 'block';
+            loadAdminData();
         }
         
-        // অর্ডার ডিসপ্লে
-        function displayOrders() {
-            const ordersList = document.getElementById('ordersList');
+        // অ্যাডমিন ডাটা লোড
+        function loadAdminData() {
+            let pending = 0, approved = 0, rejected = 0;
+            let allOrders = [];
+            
+            // লোকাল স্টোরেজ থেকে অর্ডার সংগ্রহ
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith('orders_')) {
+                    try {
+                        const orders = JSON.parse(localStorage.getItem(key));
+                        const userId = key.replace('orders_', '');
+                        
+                        orders.forEach(order => {
+                            allOrders.push({ ...order, userId });
+                            
+                            if (order.status === 'pending') pending++;
+                            else if (order.status === 'approved') approved++;
+                            else if (order.status === 'rejected') rejected++;
+                        });
+                    } catch (e) {}
+                }
+            }
+            
+            // পরিসংখ্যান আপডেট
+            document.getElementById('pendingCount').textContent = pending;
+            document.getElementById('approvedCount').textContent = approved;
+            document.getElementById('rejectedCount').textContent = rejected;
+            
+            // অর্ডার দেখানো
+            displayOrders(allOrders.filter(o => o.status === 'pending'));
+        }
+        
+        // অর্ডার দেখানো (আপনার ছবির মতো)
+        function displayOrders(orders) {
+            const container = document.getElementById('ordersList');
             
             if (orders.length === 0) {
-                ordersList.innerHTML = '<div style="color:#888; text-align:center; padding:50px;">📭 কোনো অর্ডার নেই</div>';
+                container.innerHTML = '<div style="text-align:center; color:#888; padding:30px;">কোনো পেন্ডিং অর্ডার নেই</div>';
                 return;
             }
             
             let html = '';
-            orders.reverse().forEach(order => {
-                let statusClass = '';
-                let statusText = '';
-                
-                if (order.status === 'pending') {
-                    statusClass = 'status-pending';
-                    statusText = '⏳ Pending';
-                } else if (order.status === 'approved') {
-                    statusClass = 'status-approved';
-                    statusText = '✅ Approved';
-                } else {
-                    statusClass = 'status-rejected';
-                    statusText = '❌ Rejected';
-                }
-                
+            orders.forEach(order => {
                 html += `
-                    <div style="background:#1E2333; border-radius:15px; padding:15px; margin-bottom:15px; border-left:4px solid ${order.status === 'approved' ? '#00ff88' : order.status === 'pending' ? '#ffaa00' : '#ff4444'}">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                            <span style="color:#888; font-size:12px;">${order.id}</span>
-                            <span class="status-badge ${statusClass}">${statusText}</span>
-                        </div>
-                        <div style="margin-bottom:10px;">
-                            <div style="color:#00ff88; font-weight:bold;">${order.coin}</div>
-                            <div style="display:flex; justify-content:space-between; margin-top:5px;">
-                                <span>${order.amount}</span>
-                                <span>${order.total}</span>
+                    <div class="order-card">
+                        <div class="order-user">👤 ${order.sender || 'Unknown'}</div>
+                        
+                        <div class="order-grid">
+                            <div class="order-field">
+                                <div class="field-label">Coin</div>
+                                <div class="field-value">${order.coin || 'Niva Coin'}</div>
                             </div>
-                            <div style="color:#888; font-size:12px; margin-top:5px;">${order.method} - ${order.account}</div>
+                            <div class="order-field">
+                                <div class="field-label">Method</div>
+                                <div class="field-value">${order.method || 'Bkash'}</div>
+                            </div>
+                            <div class="order-field">
+                                <div class="field-label">Amount</div>
+                                <div class="field-value">${order.amount || '0'}</div>
+                            </div>
+                            <div class="order-field">
+                                <div class="field-label">Payout</div>
+                                <div class="field-value">${order.total || '0'}</div>
+                            </div>
                         </div>
-                        <div style="color:#888; font-size:11px;">${order.time}</div>
+                        
+                        <div class="copy-section">
+                            <span class="copy-text">${order.account || 'N/A'}</span>
+                            <button class="copy-button" onclick="copyNumber('${order.account}')">📋 COPY</button>
+                        </div>
+                        
+                        <div class="rate-info">
+                            <span class="target-id">Target ID: <span class="target-value">niva_buyer_zone_1</span></span>
+                            <span class="target-id">Rate: <span class="target-value">2.8₮</span></span>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="approve-btn" onclick="updateOrder('${order.id}', '${order.userId}', 'approved')">✅ Approve</button>
+                            <button class="reject-btn" onclick="updateOrder('${order.id}', '${order.userId}', 'rejected')">❌ Reject</button>
+                        </div>
                     </div>
                 `;
             });
             
-            ordersList.innerHTML = html;
+            container.innerHTML = html;
         }
         
-        // অ্যাডমিন ফাংশন (শুধু আপনার জন্য)
-        function approveOrder(orderId) {
-            const order = orders.find(o => o.id === orderId);
-            if (order) {
-                order.status = 'approved';
-                localStorage.setItem('orders_' + (user?.id || 'guest'), JSON.stringify(orders));
+        // অর্ডার আপডেট
+        function updateOrder(orderId, userId, newStatus) {
+            const key = `orders_${userId}`;
+            const orders = JSON.parse(localStorage.getItem(key)) || [];
+            const orderIndex = orders.findIndex(o => o.id === orderId);
+            
+            if (orderIndex !== -1) {
+                orders[orderIndex].status = newStatus;
+                localStorage.setItem(key, JSON.stringify(orders));
                 
-                // সাকসেস কাউন্ট বাড়ানো
-                successCount++;
-                localStorage.setItem('successCount_' + (user?.id || 'guest'), successCount);
-                document.getElementById('successCount').textContent = successCount;
+                if (newStatus === 'approved') {
+                    // সাকসেস কাউন্ট বাড়ানো
+                    const successKey = `successCount_${userId}`;
+                    let count = parseInt(localStorage.getItem(successKey)) || 0;
+                    localStorage.setItem(successKey, count + 1);
+                    
+                    tg.showAlert(`✅ অর্ডার এপ্রুভ করা হয়েছে! ইউজারের সাকসেস কাউন্ট +১ হয়েছে।`);
+                } else {
+                    tg.showAlert(`❌ অর্ডার রিজেক্ট করা হয়েছে।`);
+                }
                 
-                displayOrders();
+                loadAdminData();
             }
         }
         
-        function rejectOrder(orderId) {
-            const order = orders.find(o => o.id === orderId);
-            if (order) {
-                order.status = 'rejected';
-                localStorage.setItem('orders_' + (user?.id || 'guest'), JSON.stringify(orders));
-                displayOrders();
+        // কপি ফাংশন
+        function copyNumber(number) {
+            navigator.clipboard.writeText(number);
+            tg.showAlert('✅ নাম্বার কপি করা হয়েছে!');
+        }
+        
+        function copyId() {
+            navigator.clipboard.writeText('niva_buyer_zone_1');
+            tg.showAlert('✅ ID কপি করা হয়েছে!');
+        }
+        
+        // টোটাল ক্যালকুলেট
+        function calcTotal() {
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            if (amount >= 1000) {
+                const total = (amount / 1000) * coinRates[selectedCoin];
+                document.getElementById('total').textContent = total.toFixed(2) + ' ₺';
             }
         }
         
-        // ইনিশিয়াল লোড
+        function selectCoin(coin) {
+            selectedCoin = coin;
+            tg.showAlert(`${coin === 'niva' ? 'Niva' : 'Ns'} Coin সিলেক্টেড`);
+            calcTotal();
+        }
+        
+        // অর্ডার সাবমিট
+        function submitOrder() {
+            const amount = document.getElementById('amount').value;
+            const username = document.getElementById('username').value;
+            const bkash = document.getElementById('bkash').value;
+            
+            if (!amount || amount < 1000 || !username || !bkash) {
+                tg.showAlert('⚠️ সব তথ্য দিন');
+                return;
+            }
+            
+            const total = (amount / 1000) * coinRates[selectedCoin];
+            
+            const newOrder = {
+                id: 'ORD' + Date.now(),
+                coin: selectedCoin === 'niva' ? 'Niva Coin' : 'Ns Coin',
+                amount: amount,
+                sender: username,
+                method: 'Bkash',
+                account: bkash,
+                total: total.toFixed(2) + ' ₺',
+                status: 'pending',
+                time: new Date().toLocaleString()
+            };
+            
+            const key = `orders_${user?.id || 'guest'}`;
+            const orders = JSON.parse(localStorage.getItem(key)) || [];
+            orders.push(newOrder);
+            localStorage.setItem(key, JSON.stringify(orders));
+            
+            tg.showAlert('✅ অর্ডার পেন্ডিং আছে! অ্যাডমিন এপ্রুভ করার পর সাকসেস কাউন্ট বাড়বে।');
+            showHomePage();
+        }
+        
+        // জয়েন চ্যানেল
+        function joinChannel() {
+            tg.openTelegramLink('https://t.me/incomebd1k');
+        }
+        
+        // Success Count লোড
+        function loadSuccessCount() {
+            const key = `successCount_${user?.id || 'guest'}`;
+            const count = parseInt(localStorage.getItem(key)) || 0;
+            document.getElementById('successCount').textContent = count;
+        }
+        
+        // হিস্ট্রি দেখানো
+        function showHistory() {
+            const key = `orders_${user?.id || 'guest'}`;
+            const orders = JSON.parse(localStorage.getItem(key)) || [];
+            
+            if (orders.length === 0) {
+                tg.showAlert('📭 কোনো অর্ডার নেই');
+                return;
+            }
+            
+            let message = '📋 আপনার অর্ডার:\n\n';
+            orders.slice(-5).reverse().forEach(o => {
+                const status = o.status === 'approved' ? '✅' : o.status === 'rejected' ? '❌' : '⏳';
+                message += `${status} ${o.amount} = ${o.total}\n`;
+            });
+            
+            tg.showPopup({
+                title: 'Order History',
+                message: message,
+                buttons: [{type: 'ok'}]
+            });
+        }
+        
+        // টেলিগ্রাম থেকে কমান্ড হ্যান্ডেল
+        tg.onEvent('mainButtonClicked', function() {
+            // কমান্ড হ্যান্ডেল
+        });
+        
+        // অ্যাডমিন চেক
+        if (user?.id == ADMIN_ID) {
+            // অ্যাডমিন হলে /admin কমান্ড দেখানো
+            console.log('Admin logged in');
+        }
+        
+        // URL থেকে প্যারামিটার চেক
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('page') === 'admin') {
+            showAdminPage();
+        }
+        
+        // ইনিশিয়াল পেজ
         showHomePage();
     </script>
 </body>
-</html>
+    </html>
