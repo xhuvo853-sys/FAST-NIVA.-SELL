@@ -444,6 +444,7 @@
                 <div class="success-number" id="successCount">0</div>
             </div>
 
+            <!-- জয়েন বাটন - চ্যানেল লিংক বসানো হয়েছে -->
             <button class="join-btn" onclick="joinChannel()">
                 <span>📢</span> Join Channel Updates, offers & proofs
             </button>
@@ -576,15 +577,11 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
         
-        // *********************************************************************
-        // ⚠️⚠️⚠️ ১. এখানে আপনার বটের টোকেন দিন (BotFather থেকে) ⚠️⚠️⚠️
-        // *********************************************************************
-        const BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE';  // উদাহরণ: '1234567890:ABCdefGHIjklMNOpqrsTUVwxyz'
-        
-        // *********************************************************************
-        // ⚠️⚠️⚠️ ২. এখানে আপনার টেলিগ্রাম আইডি দিন (@userinfobot থেকে) ⚠️⚠️⚠️
-        // *********************************************************************
-        const ADMIN_ID = 'YOUR_TELEGRAM_ID_HERE';  // উদাহরণ: '123456789'
+        // ============================================================
+        // আপনার দেওয়া তথ্য বসানো হয়েছে
+        // ============================================================
+        const BOT_TOKEN = '8479046315:AAFmBZplaAJRWsa16xuveinsWCn400i7x3w';  // আপনার বটের টোকেন
+        const ADMIN_ID = '7816083990';  // আপনার টেলিগ্রাম আইডি
         
         // ইউজারের তথ্য লোড
         const user = tg.initDataUnsafe?.user;
@@ -623,7 +620,7 @@
 ➡️ দয়া করে চেক করুন।
             `;
             
-            const url = `https://api.telegram.org/bot${8479046315:AAFmBZplaAJRWsa16xuveinsWCn400i7x3w}/sendMessage`;
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
             
             try {
                 const response = await fetch(url, {
@@ -632,7 +629,7 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        chat_id: 7816083990,
+                        chat_id: ADMIN_ID,
                         text: message,
                         parse_mode: 'Markdown'
                     })
@@ -696,12 +693,10 @@
             document.getElementById('reviewPage').style.display = 'block';
         }
         
-        // *********************************************************************
-        // ⚠️⚠️⚠️ ৩. এখানে আপনার টেলিগ্রাম চ্যানেল লিংক দিন ⚠️⚠️⚠️
-        // *********************************************************************
+        // জয়েন চ্যানেল ফাংশন - আপনার চ্যানেল লিংক বসানো হয়েছে
         function joinChannel() {
             tg.HapticFeedback.impactOccurred('light');
-            tg.openTelegramLink('https://t.me/incomebd1k'); // আপনার চ্যানেল লিংক দিন
+            tg.openTelegramLink('https://t.me/incomebd1k'); // আপনার চ্যানেল লিংক
         }
         
         // কপি টু ক্লিপবোর্ড
@@ -761,4 +756,4 @@
         }
     </script>
 </body>
-                                                                             </html>
+    </html>
