@@ -475,12 +475,11 @@
         </div>
     </div>
 
-    <!-- সেল ফর্ম পেজ (২য় পেজ) - হেডার পরিবর্তন করা হয়েছে -->
+    <!-- সেল ফর্ম পেজ -->
     <div id="sellPage" style="display: none;">
         <div class="container">
             <button class="back-btn" onclick="showHomePage()">← ব্যাক টু হোম</button>
             
-            <!-- "NIVA BUYER ZONE" এর পরিবর্তে "FAST NIVA SELL" -->
             <div class="sell-header">FAST NIVA SELL</div>
             <div class="sell-subheader">Sell Niva Coin. Enter your details carefully before submitting.</div>
             
@@ -526,7 +525,7 @@
         </div>
     </div>
 
-    <!-- রিভিউ পেজ (৩য় পেজ) -->
+    <!-- রিভিউ পেজ -->
     <div id="reviewPage" style="display: none;">
         <div class="container">
             <div class="sell-header">FAST NIVA SELL</div>
@@ -577,19 +576,25 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
         
+        // *********************************************************************
+        // ⚠️⚠️⚠️ ১. এখানে আপনার বটের টোকেন দিন (BotFather থেকে) ⚠️⚠️⚠️
+        // *********************************************************************
+        const BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE';  // উদাহরণ: '1234567890:ABCdefGHIjklMNOpqrsTUVwxyz'
+        
+        // *********************************************************************
+        // ⚠️⚠️⚠️ ২. এখানে আপনার টেলিগ্রাম আইডি দিন (@userinfobot থেকে) ⚠️⚠️⚠️
+        // *********************************************************************
+        const ADMIN_ID = 'YOUR_TELEGRAM_ID_HERE';  // উদাহরণ: '123456789'
+        
         // ইউজারের তথ্য লোড
         const user = tg.initDataUnsafe?.user;
         console.log('User Info:', user);
         
         // ইউজারনেম সেট করা
         if (user?.username) {
-            // @username ফরম্যাটে দেখানো
             document.getElementById('username').textContent = '@' + user.username;
-            
-            // সেল ফর্মেও অটো ফিল করা
             document.getElementById('senderUsername').value = '@' + user.username;
         } else if (user?.first_name) {
-            // যদি ইউজারনেম না থাকে তাহলে নাম দেখানো
             document.getElementById('username').textContent = user.first_name;
             document.getElementById('senderUsername').value = user.first_name;
         }
@@ -597,6 +602,51 @@
         // অ্যাভাটার সেট করা
         if (user?.first_name) {
             document.getElementById('avatar').textContent = user.first_name.charAt(0).toUpperCase();
+        }
+        
+        // টেলিগ্রাম নোটিফিকেশন পাঠানোর ফাংশন
+        async function sendTelegramNotification(orderDetails) {
+            const message = `
+🔔 **নতুন সেল অর্ডার!**
+
+👤 **ইউজার ডিটেইলস:**
+• ইউজার: ${orderDetails.username}
+• আইডি: ${orderDetails.userId}
+
+💰 **অর্ডার ডিটেইলস:**
+• পরিমাণ: ${orderDetails.amount} কয়েন
+• বিকাশ: ${orderDetails.bkash}
+• টোটাল: ${orderDetails.total}
+
+⏰ সময়: ${new Date().toLocaleString('bn-BD')}
+
+➡️ দয়া করে চেক করুন।
+            `;
+            
+            const url = `https://api.telegram.org/bot${8479046315:AAFmBZplaAJRWsa16xuveinsWCn400i7x3w}/sendMessage`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: 7816083990,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.ok) {
+                    console.log('✅ নোটিফিকেশন পাঠানো হয়েছে');
+                } else {
+                    console.log('❌ নোটিফিকেশন পাঠানো যায়নি:', data);
+                }
+            } catch (error) {
+                console.log('এরর:', error);
+            }
         }
         
         // হোম পেজ দেখানো
@@ -635,7 +685,6 @@
 
             const total = (amount / 1000) * 3;
             
-            // রিভিউ পেজ আপডেট
             document.getElementById('reviewAmount').textContent = amount;
             document.getElementById('reviewSender').textContent = username;
             document.getElementById('reviewAccount').textContent = bkash;
@@ -647,10 +696,12 @@
             document.getElementById('reviewPage').style.display = 'block';
         }
         
-        // জয়েন চ্যানেল
+        // *********************************************************************
+        // ⚠️⚠️⚠️ ৩. এখানে আপনার টেলিগ্রাম চ্যানেল লিংক দিন ⚠️⚠️⚠️
+        // *********************************************************************
         function joinChannel() {
             tg.HapticFeedback.impactOccurred('light');
-            tg.openTelegramLink('https://t.me/your_channel'); // আপনার চ্যানেল লিংক দিন
+            tg.openTelegramLink('https://t.me/incomebd1k'); // আপনার চ্যানেল লিংক দিন
         }
         
         // কপি টু ক্লিপবোর্ড
@@ -681,41 +732,33 @@
             const account = document.getElementById('reviewAccount').textContent;
             const total = document.getElementById('reviewTotal').textContent;
             
-            // ইউজারের তথ্য
-            const userId = user?.id || 'Unknown';
-            const username = user?.username ? '@' + user.username : 'No username';
-            
-            // কনসোলে লগ (ডিবাগের জন্য)
-            console.log('📨 নতুন সেল অর্ডার:', {
-                user: username,
-                userId: userId,
+            const orderDetails = {
+                username: sender,
+                userId: user?.id || 'Unknown',
                 amount: amount,
-                sender: sender,
-                account: account,
-                total: total,
-                time: new Date().toLocaleString('bn-BD')
-            });
+                bkash: account,
+                total: total
+            };
             
-            // ইউজারকে দেখান
+            // টেলিগ্রামে নোটিফিকেশন পাঠান
+            sendTelegramNotification(orderDetails);
+            
             tg.showPopup({
                 title: '✅ সফল হয়েছে!',
                 message: `আপনার সেল রিকোয়েস্ট জমা হয়েছে।\n\nঅ্যাডমিন শীঘ্রই যোগাযোগ করবে।`,
                 buttons: [{type: 'ok', text: 'ঠিক আছে'}]
             });
             
-            // সাকসেস কাউন্ট বাড়ানো
             let count = parseInt(document.getElementById('successCount').textContent) || 0;
             count++;
             document.getElementById('successCount').textContent = count;
             
-            // হোম পেজে ফিরে যাওয়া
             setTimeout(() => {
                 showHomePage();
-                // ফর্ম ক্লিয়ার করা
                 document.getElementById('amount').value = '';
                 document.getElementById('bkash').value = '';
             }, 2000);
         }
     </script>
 </body>
-    </html>
+                                                                             </html>
