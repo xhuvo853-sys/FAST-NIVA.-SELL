@@ -149,7 +149,7 @@
             font-weight: bold;
         }
         
-        /* কয়েন সেকশন - দুইটা কয়েনের জন্য */
+        /* কয়েন কার্ড */
         .coin-section {
             display: flex;
             flex-direction: column;
@@ -223,7 +223,6 @@
             color: #00ff88;
         }
         
-        /* সেল বাটন */
         .sell-btn {
             background: linear-gradient(135deg, #00ff88, #00cc66);
             color: #0a0f1e;
@@ -238,7 +237,7 @@
             text-transform: uppercase;
         }
         
-        /* সেল ফর্ম পেজ */
+        /* সেল ফর্ম */
         .back-btn {
             background: transparent;
             color: #888;
@@ -300,6 +299,71 @@
             border-radius: 10px;
             font-weight: bold;
             cursor: pointer;
+        }
+        
+        .coin-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .coin-option {
+            flex: 1;
+            background: #1E2333;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid #2A2F3F;
+        }
+        
+        .coin-option.selected {
+            border: 2px solid #00ff88;
+            background: #2A2F3F;
+        }
+        
+        .coin-option-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .coin-option-rate {
+            color: #00ff88;
+            font-size: 14px;
+        }
+        
+        /* পেমেন্ট মেথড সিলেক্টর - নতুন */
+        .payment-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-option {
+            flex: 1;
+            background: #1E2333;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid #2A2F3F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .payment-option.selected {
+            border: 2px solid #00ff88;
+            background: #2A2F3F;
+        }
+        
+        .payment-icon {
+            font-size: 20px;
+        }
+        
+        .payment-name {
+            font-weight: 500;
         }
         
         .form-group {
@@ -468,36 +532,28 @@
             margin: 20px 0;
         }
         
-        /* কয়েন সিলেক্টর */
-        .coin-selector {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .coin-option {
-            flex: 1;
-            background: #1E2333;
-            padding: 15px;
-            border-radius: 15px;
-            text-align: center;
-            cursor: pointer;
-            border: 1px solid #2A2F3F;
-        }
-        
-        .coin-option.selected {
-            border: 2px solid #00ff88;
-            background: #2A2F3F;
-        }
-        
-        .coin-option-name {
+        /* স্ট্যাটাস ব্যাজ */
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
             font-weight: bold;
-            margin-bottom: 5px;
         }
         
-        .coin-option-rate {
-            color: #00ff88;
-            font-size: 14px;
+        .status-pending {
+            background: #ffaa00;
+            color: #0a0f1e;
+        }
+        
+        .status-approved {
+            background: #00ff88;
+            color: #0a0f1e;
+        }
+        
+        .status-rejected {
+            background: #ff4444;
+            color: white;
         }
     </style>
 </head>
@@ -532,7 +588,6 @@
                 
                 <div class="online-badge">⭕ ONLINE</div>
 
-                <!-- দুইটা কয়েনের কার্ড -->
                 <div class="coin-section">
                     <!-- Niva Coin -->
                     <div class="coin-card" onclick="selectCoin('niva')">
@@ -552,7 +607,7 @@
                         </div>
                     </div>
 
-                    <!-- Ns Coin - নতুন যোগ করা -->
+                    <!-- Ns Coin -->
                     <div class="coin-card" onclick="selectCoin('ns')">
                         <div class="coin-header">
                             <span class="coin-name">Ns Coin</span>
@@ -614,15 +669,34 @@
                 <input type="text" class="form-input" id="senderUsername" placeholder="@username">
             </div>
 
+            <!-- পেমেন্ট মেথড সিলেক্টর - বিকাশ + নগদ -->
             <div class="form-group">
-                <label class="form-label">🏦 Bkash Number</label>
-                <input type="text" class="form-input" id="bkash" placeholder="Enter your Bkash number">
+                <label class="form-label">🏦 Payment Method</label>
+                <div class="payment-selector">
+                    <div class="payment-option" id="paymentBkash" onclick="setPaymentMethod('bkash')">
+                        <span class="payment-icon">💳</span>
+                        <span class="payment-name">Bkash</span>
+                    </div>
+                    <div class="payment-option" id="paymentNagad" onclick="setPaymentMethod('nagad')">
+                        <span class="payment-icon">📱</span>
+                        <span class="payment-name">Nagad</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" id="accountLabel">📱 Account Number</label>
+                <input type="text" class="form-input" id="accountNumber" placeholder="Enter account number">
             </div>
 
             <div class="rate-box2">
                 <div class="rate-info">
                     <div class="rate-label2">Rate</div>
                     <div class="rate-value2" id="rate">2.8₮</div>
+                </div>
+                <div class="rate-info">
+                    <div class="rate-label2">Fee (5₮)</div>
+                    <div class="fee-value" id="fee">-5₮</div>
                 </div>
                 <div class="rate-info">
                     <div class="rate-label2">TOTAL</div>
@@ -661,18 +735,23 @@
                 </div>
                 
                 <div class="review-item">
-                    <div class="review-item-label">Method:</div>
-                    <div class="review-item-value">Bkash</div>
+                    <div class="review-item-label">Payment Method:</div>
+                    <div class="review-item-value" id="reviewMethod">Bkash</div>
                 </div>
                 
                 <div class="review-item">
                     <div class="review-item-label">Account No:</div>
                     <div class="review-item-value" id="reviewAccount"></div>
                 </div>
+                
+                <div class="review-item">
+                    <div class="review-item-label">Fee:</div>
+                    <div class="review-item-value" id="reviewFee">5₺</div>
+                </div>
             </div>
             
             <div class="review-total-box">
-                <div class="review-total-label">You Will Get:</div>
+                <div class="review-total-label">You Will Get (After Fee):</div>
                 <div class="review-total-value" id="reviewTotal"></div>
             </div>
             
@@ -699,11 +778,13 @@
         const ADMIN_ID = '7816083990';
         
         // স্টেট ম্যানেজমেন্ট
-        let selectedCoin = 'niva'; // niva বা ns
+        let selectedCoin = 'niva';
+        let selectedPayment = 'bkash';
         const coinRates = {
             niva: 2.8,
             ns: 11
         };
+        const FEE = 5; // ৫ টাকা ফি
         
         const user = tg.initDataUnsafe?.user;
         
@@ -717,13 +798,17 @@
             document.getElementById('avatar').textContent = user.first_name.charAt(0).toUpperCase();
         }
         
+        // লোকাল স্টোরেজ থেকে অর্ডার লোড
+        let orders = JSON.parse(localStorage.getItem('orders_' + (user?.id || 'guest'))) || [];
+        let successCount = parseInt(localStorage.getItem('successCount_' + (user?.id || 'guest'))) || 0;
+        document.getElementById('successCount').textContent = successCount;
+        
         // পেজ নেভিগেশন
         function showHomePage() {
             document.getElementById('homePage').style.display = 'block';
             document.getElementById('sellPage').style.display = 'none';
             document.getElementById('reviewPage').style.display = 'none';
             document.getElementById('historyPage').style.display = 'none';
-            loadSuccessCount();
         }
         
         function showSellPage() {
@@ -733,14 +818,14 @@
             document.getElementById('reviewPage').style.display = 'none';
             document.getElementById('historyPage').style.display = 'none';
             
-            // কয়েন সিলেক্টর আপডেট
             updateCoinSelector();
+            updatePaymentSelector();
         }
         
         function showReviewPage() {
             const amount = document.getElementById('amount').value;
             const username = document.getElementById('senderUsername').value;
-            const bkash = document.getElementById('bkash').value;
+            const account = document.getElementById('accountNumber').value;
 
             if (!amount || amount < 1000) {
                 tg.showAlert('⚠️ ন্যূনতম 1000 কয়েন দিন');
@@ -750,19 +835,21 @@
                 tg.showAlert('⚠️ ইউজারনেম দিন');
                 return;
             }
-            if (!bkash) {
-                tg.showAlert('⚠️ বিকাশ নাম্বার দিন');
+            if (!account) {
+                tg.showAlert('⚠️ অ্যাকাউন্ট নাম্বার দিন');
                 return;
             }
 
             const rate = coinRates[selectedCoin];
-            const total = (amount / 1000) * rate;
+            const subtotal = (amount / 1000) * rate;
+            const total = subtotal - FEE;
             
             // রিভিউ পেজ আপডেট
             document.getElementById('reviewCoin').textContent = selectedCoin === 'niva' ? 'Niva Coin' : 'Ns Coin';
             document.getElementById('reviewAmount').textContent = amount;
             document.getElementById('reviewSender').textContent = username;
-            document.getElementById('reviewAccount').textContent = bkash;
+            document.getElementById('reviewMethod').textContent = selectedPayment === 'bkash' ? 'Bkash' : 'Nagad';
+            document.getElementById('reviewAccount').textContent = account;
             document.getElementById('reviewTotal').textContent = total.toFixed(2) + ' ₺';
             
             tg.HapticFeedback.impactOccurred('light');
@@ -777,10 +864,10 @@
             document.getElementById('sellPage').style.display = 'none';
             document.getElementById('reviewPage').style.display = 'none';
             document.getElementById('historyPage').style.display = 'block';
-            loadOrders();
+            displayOrders();
         }
         
-        // কয়েন সিলেক্ট ফাংশন
+        // কয়েন সিলেক্ট
         function selectCoin(coinType) {
             selectedCoin = coinType;
             tg.HapticFeedback.impactOccurred('light');
@@ -806,49 +893,113 @@
             }
         }
         
+        // পেমেন্ট মেথড সিলেক্ট
+        function setPaymentMethod(method) {
+            selectedPayment = method;
+            updatePaymentSelector();
+        }
+        
+        function updatePaymentSelector() {
+            document.getElementById('paymentBkash').classList.remove('selected');
+            document.getElementById('paymentNagad').classList.remove('selected');
+            
+            if (selectedPayment === 'bkash') {
+                document.getElementById('paymentBkash').classList.add('selected');
+                document.getElementById('accountLabel').textContent = '📱 Bkash Number';
+            } else {
+                document.getElementById('paymentNagad').classList.add('selected');
+                document.getElementById('accountLabel').textContent = '📱 Nagad Number';
+            }
+        }
+        
         function goToSell() {
             showSellPage();
         }
         
-        // চ্যানেল জয়েন
         function joinChannel() {
             tg.HapticFeedback.impactOccurred('light');
             tg.openTelegramLink('https://t.me/incomebd1k');
         }
         
-        // কপি ফাংশন
         function copyToClipboard() {
             navigator.clipboard.writeText('shuvo46637');
             tg.HapticFeedback.impactOccurred('medium');
             tg.showAlert('✅ ID কপি করা হয়েছে!');
         }
         
-        // ক্যালকুলেশন
         function calculateTotal() {
             const amount = parseFloat(document.getElementById('amount').value) || 0;
             if (amount >= 1000) {
                 const rate = coinRates[selectedCoin];
-                const total = (amount / 1000) * rate;
+                const subtotal = (amount / 1000) * rate;
+                const total = subtotal - FEE;
                 document.getElementById('total').textContent = total.toFixed(2) + ' ₺';
             } else {
                 document.getElementById('total').textContent = '0.00 ₺';
             }
         }
         
-        // নোটিফিকেশন পাঠানো
-        async function sendTelegramNotification(orderDetails) {
+        // অর্ডার সাবমিট
+        function confirmSubmit() {
+            tg.HapticFeedback.impactOccurred('heavy');
+            
+            const amount = document.getElementById('reviewAmount').textContent;
+            const sender = document.getElementById('reviewSender').textContent;
+            const account = document.getElementById('reviewAccount').textContent;
+            const total = document.getElementById('reviewTotal').textContent;
+            const coin = document.getElementById('reviewCoin').textContent;
+            const method = document.getElementById('reviewMethod').textContent;
+            
+            // নতুন অর্ডার তৈরি
+            const newOrder = {
+                id: 'ORD' + Date.now(),
+                coin: coin,
+                amount: amount,
+                sender: sender,
+                method: method,
+                account: account,
+                total: total,
+                status: 'pending',
+                time: new Date().toLocaleString('bn-BD')
+            };
+            
+            // অর্ডার সেভ
+            orders.push(newOrder);
+            localStorage.setItem('orders_' + (user?.id || 'guest'), JSON.stringify(orders));
+            
+            // অ্যাডমিনকে নোটিফিকেশন
             const message = `
 🔔 **নতুন সেল অর্ডার!**
 
-🪙 **কয়েন:** ${orderDetails.coin}
-👤 **ইউজার:** ${orderDetails.username}
-💰 **পরিমাণ:** ${orderDetails.amount} কয়েন
-🏦 **বিকাশ:** ${orderDetails.bkash}
-💵 **টোটাল:** ${orderDetails.total}
+🪙 **কয়েন:** ${coin}
+👤 **ইউজার:** ${sender}
+💰 **পরিমাণ:** ${amount}
+🏦 **পেমেন্ট:** ${method}
+📱 **অ্যাকাউন্ট:** ${account}
+💵 **টোটাল (ফি বাদে):** ${total}
 
 ⏰ সময়: ${new Date().toLocaleString('bn-BD')}
+📊 **স্ট্যাটাস:** পেন্ডিং
             `;
             
+            sendTelegramNotification(message);
+            
+            tg.showPopup({
+                title: '✅ অর্ডার জমা হয়েছে!',
+                message: `আপনার অর্ডার পেন্ডিং আছে। অ্যাডমিন এপ্রুভ করার পর সাকসেস কাউন্ট বাড়বে।`,
+                buttons: [{type: 'ok', text: 'ঠিক আছে'}]
+            });
+            
+            // হোমে ফেরত
+            setTimeout(() => {
+                showHomePage();
+                document.getElementById('amount').value = '';
+                document.getElementById('accountNumber').value = '';
+            }, 2000);
+        }
+        
+        // নোটিফিকেশন পাঠানো
+        async function sendTelegramNotification(message) {
             const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
             
             try {
@@ -866,61 +1017,80 @@
             }
         }
         
-        // কনফার্ম সাবমিট
-        function confirmSubmit() {
-            tg.HapticFeedback.impactOccurred('heavy');
+        // অর্ডার ডিসপ্লে
+        function displayOrders() {
+            const ordersList = document.getElementById('ordersList');
             
-            const amount = document.getElementById('reviewAmount').textContent;
-            const sender = document.getElementById('reviewSender').textContent;
-            const account = document.getElementById('reviewAccount').textContent;
-            const total = document.getElementById('reviewTotal').textContent;
-            const coin = document.getElementById('reviewCoin').textContent;
+            if (orders.length === 0) {
+                ordersList.innerHTML = '<div style="color:#888; text-align:center; padding:50px;">📭 কোনো অর্ডার নেই</div>';
+                return;
+            }
             
-            const orderDetails = {
-                coin: coin,
-                username: sender,
-                userId: user?.id || 'Unknown',
-                amount: amount,
-                bkash: account,
-                total: total
-            };
-            
-            // নোটিফিকেশন পাঠান
-            sendTelegramNotification(orderDetails);
-            
-            tg.showPopup({
-                title: '✅ সফল হয়েছে!',
-                message: `আপনার সেল রিকোয়েস্ট জমা হয়েছে।\n\nঅ্যাডমিন শীঘ্রই যোগাযোগ করবে।`,
-                buttons: [{type: 'ok', text: 'ঠিক আছে'}]
+            let html = '';
+            orders.reverse().forEach(order => {
+                let statusClass = '';
+                let statusText = '';
+                
+                if (order.status === 'pending') {
+                    statusClass = 'status-pending';
+                    statusText = '⏳ Pending';
+                } else if (order.status === 'approved') {
+                    statusClass = 'status-approved';
+                    statusText = '✅ Approved';
+                } else {
+                    statusClass = 'status-rejected';
+                    statusText = '❌ Rejected';
+                }
+                
+                html += `
+                    <div style="background:#1E2333; border-radius:15px; padding:15px; margin-bottom:15px; border-left:4px solid ${order.status === 'approved' ? '#00ff88' : order.status === 'pending' ? '#ffaa00' : '#ff4444'}">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                            <span style="color:#888; font-size:12px;">${order.id}</span>
+                            <span class="status-badge ${statusClass}">${statusText}</span>
+                        </div>
+                        <div style="margin-bottom:10px;">
+                            <div style="color:#00ff88; font-weight:bold;">${order.coin}</div>
+                            <div style="display:flex; justify-content:space-between; margin-top:5px;">
+                                <span>${order.amount}</span>
+                                <span>${order.total}</span>
+                            </div>
+                            <div style="color:#888; font-size:12px; margin-top:5px;">${order.method} - ${order.account}</div>
+                        </div>
+                        <div style="color:#888; font-size:11px;">${order.time}</div>
+                    </div>
+                `;
             });
             
-            // সাকসেস কাউন্ট বাড়ানো (টেম্পরারি)
-            let count = parseInt(document.getElementById('successCount').textContent) || 0;
-            count++;
-            document.getElementById('successCount').textContent = count;
-            
-            // হোমে ফেরত
-            setTimeout(() => {
-                showHomePage();
-                document.getElementById('amount').value = '';
-                document.getElementById('bkash').value = '';
-            }, 2000);
+            ordersList.innerHTML = html;
         }
         
-        // অর্ডার লোড (ডেমো)
-        function loadOrders() {
-            const ordersList = document.getElementById('ordersList');
-            ordersList.innerHTML = '<div style="color:#888; text-align:center;">কোনো অর্ডার নেই</div>';
+        // অ্যাডমিন ফাংশন (শুধু আপনার জন্য)
+        function approveOrder(orderId) {
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                order.status = 'approved';
+                localStorage.setItem('orders_' + (user?.id || 'guest'), JSON.stringify(orders));
+                
+                // সাকসেস কাউন্ট বাড়ানো
+                successCount++;
+                localStorage.setItem('successCount_' + (user?.id || 'guest'), successCount);
+                document.getElementById('successCount').textContent = successCount;
+                
+                displayOrders();
+            }
         }
         
-        // Success Count লোড
-        function loadSuccessCount() {
-            // ডেমো ডাটা
-            document.getElementById('successCount').textContent = '0';
+        function rejectOrder(orderId) {
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                order.status = 'rejected';
+                localStorage.setItem('orders_' + (user?.id || 'guest'), JSON.stringify(orders));
+                displayOrders();
+            }
         }
         
         // ইনিশিয়াল লোড
         showHomePage();
     </script>
 </body>
-    </html>
+</html>
