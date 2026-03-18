@@ -394,7 +394,7 @@
             margin-top: 10px;
         }
         
-        /* রিভিউ পেজ - ২য় ছবির মতো */
+        /* রিভিউ পেজ */
         .review-container {
             background: #1E2333;
             border-radius: 20px;
@@ -466,7 +466,7 @@
             cursor: pointer;
         }
         
-        /* অর্ডার কার্ড - হিস্ট্রি পেজের জন্য */
+        /* অর্ডার কার্ড */
         .order-card {
             background: #1E2333;
             border-radius: 15px;
@@ -557,15 +557,29 @@
             margin: 20px 0;
         }
         
-        /* অ্যাডমিন প্যানেল - ৩য় ছবির মতো (শুধু আপনার জন্য) */
+        /* অ্যাডমিন প্যানেল - ৩য় ছবির মতো */
+        .admin-header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+        
+        .admin-subheader {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
         .admin-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            justify-content: space-between;
             gap: 10px;
             margin-bottom: 20px;
         }
         
         .admin-stat {
+            flex: 1;
             background: #1E2333;
             border-radius: 12px;
             padding: 15px;
@@ -756,18 +770,18 @@
                 <div class="form-title">FAST NIVA SELL</div>
                 <div class="form-subtitle">Sell Niva Coin. Enter your details carefully before submitting.</div>
                 
-                <!-- Send ID -->
+                <!-- Send ID - কয়েন অনুযায়ী চেঞ্জ হবে -->
                 <div class="send-box">
                     <div class="send-label">📤 SEND COINS TO THIS ID</div>
                     <div class="send-row">
-                        <span class="send-id" id="walletId">shuvo46637</span>
-                        <button class="copy-btn" onclick="copyToClipboard('shuvo46637')">COPY ID</button>
+                        <span class="send-id" id="walletId">fastnivasell.niva</span>
+                        <button class="copy-btn" onclick="copyToClipboard(document.getElementById('walletId').textContent)">COPY ID</button>
                     </div>
                 </div>
 
                 <!-- Coin Selector -->
                 <div class="coin-selector">
-                    <div class="coin-option" id="coinNiva" onclick="setCoin('niva')">
+                    <div class="coin-option selected" id="coinNiva" onclick="setCoin('niva')">
                         <div class="coin-option-name">Niva</div>
                         <div class="coin-option-rate">2.8₮</div>
                     </div>
@@ -791,7 +805,7 @@
 
                 <!-- Payment Method -->
                 <div class="payment-selector">
-                    <div class="payment-option" id="paymentBkash" onclick="setPayment('bkash')">
+                    <div class="payment-option selected" id="paymentBkash" onclick="setPayment('bkash')">
                         <span>💳 Bkash</span>
                     </div>
                     <div class="payment-option" id="paymentNagad" onclick="setPayment('nagad')">
@@ -827,7 +841,7 @@
         </div>
     </div>
 
-    <!-- রিভিউ পেজ (২য় ছবির মতো) -->
+    <!-- রিভিউ পেজ -->
     <div id="reviewPage" style="display: none;">
         <div class="container">
             <div class="form-container">
@@ -850,7 +864,7 @@
                 
                 <div class="review-item">
                     <div class="review-item-label">Sender:</div>
-                    <div class="review-item-value" id="reviewSender">shuvo46637</div>
+                    <div class="review-item-value" id="reviewSender"></div>
                 </div>
                 
                 <div class="review-item">
@@ -861,6 +875,11 @@
                 <div class="review-item">
                     <div class="review-item-label">Account No:</div>
                     <div class="review-item-value" id="reviewAccount"></div>
+                </div>
+                
+                <div class="review-item">
+                    <div class="review-item-label">Target ID:</div>
+                    <div class="review-item-value" id="reviewTargetId"></div>
                 </div>
                 
                 <div class="review-total" id="reviewTotal"></div>
@@ -889,11 +908,11 @@
     <div id="adminPage" style="display: none;">
         <div class="container">
             <div class="form-container">
-                <div class="form-title">⚡ ADMIN COMMAND CENTER</div>
-                <div class="form-subtitle">Manage Orders & Rates</div>
+                <div class="admin-header">⚡ ADMIN COMMAND CENTER</div>
+                <div class="admin-subheader">Manage Orders & Rates</div>
                 
                 <!-- Stats -->
-                <div class="admin-stats" id="adminStats">
+                <div class="admin-stats">
                     <div class="admin-stat">
                         <div class="admin-stat-label">⏳ PENDING</div>
                         <div class="admin-stat-number stat-pending" id="adminPending">0</div>
@@ -916,7 +935,7 @@
 
     <!-- নেভিগেশন বার (নিচে ফিক্সড) -->
     <div class="nav-bar">
-        <button class="nav-btn" id="navHome" onclick="showHome()">🏠 হোম</button>
+        <button class="nav-btn active" id="navHome" onclick="showHome()">🏠 হোম</button>
         <button class="nav-btn" id="navHistory" onclick="showHistory()">📋 হিস্ট্রি</button>
         <button class="nav-btn" id="navAdmin" onclick="showAdmin()" style="display: none;">⚡ অ্যাডমিন</button>
     </div>
@@ -938,6 +957,12 @@
         const coinRates = {
             niva: 2.8,
             ns: 11
+        };
+        
+        // Target ID কয়েন অনুযায়ী
+        const coinTargetIds = {
+            niva: 'fastnivasell.niva',
+            ns: 'fastnivasell.ns'
         };
         
         const user = tg.initDataUnsafe?.user;
@@ -964,6 +989,14 @@
             document.getElementById('successCount').textContent = count;
         }
         
+        // Target ID আপডেট ফাংশন
+        function updateTargetId(coin) {
+            const targetElement = document.getElementById('walletId');
+            if (targetElement) {
+                targetElement.textContent = coinTargetIds[coin];
+            }
+        }
+        
         // পেজ নেভিগেশন
         function showHome() {
             document.getElementById('homePage').style.display = 'block';
@@ -983,10 +1016,12 @@
             document.getElementById('sellPage').style.display = 'block';
             document.getElementById('reviewPage').style.display = 'none';
             
-            // অটো ফিল
             if (user?.username) {
                 document.getElementById('senderUsername').value = '@' + user.username;
             }
+            
+            // Target ID রিসেট
+            updateTargetId(currentCoin);
         }
         
         function goToReview() {
@@ -1017,6 +1052,7 @@
                 username: username,
                 payment: currentPayment === 'bkash' ? 'Bkash' : 'Nagad',
                 account: account,
+                targetId: coinTargetIds[currentCoin],
                 total: total.toFixed(2) + ' ₺'
             };
             
@@ -1025,6 +1061,7 @@
             document.getElementById('reviewSender').textContent = formData.username;
             document.getElementById('reviewMethod').textContent = formData.payment;
             document.getElementById('reviewAccount').textContent = formData.account;
+            document.getElementById('reviewTargetId').textContent = formData.targetId;
             document.getElementById('reviewTotal').textContent = formData.total;
             
             document.getElementById('sellPage').style.display = 'none';
@@ -1125,7 +1162,7 @@
             displayAdminOrders(allOrders.filter(o => o.status === 'pending'));
         }
         
-        // অ্যাডমিন অর্ডার দেখানো (৩য় ছবির মতো)
+        // অ্যাডমিন অর্ডার দেখানো
         function displayAdminOrders(orders) {
             const container = document.getElementById('adminOrdersContainer');
             
@@ -1165,8 +1202,8 @@
                         </div>
                         
                         <div class="admin-rate-info">
-                            <span>Target ID: <span class="admin-rate-value">niva_buyer_zone_1</span></span>
-                            <span>Rate: <span class="admin-rate-value">2.8₮</span></span>
+                            <span>Target ID: <span class="admin-rate-value">${order.targetId || 'niva_buyer_zone_1'}</span></span>
+                            <span>Rate: <span class="admin-rate-value">${order.coin === 'Niva Coin' ? '2.8' : '11'}₮</span></span>
                         </div>
                         
                         <div class="admin-actions">
@@ -1195,7 +1232,6 @@
                     let count = parseInt(localStorage.getItem(successKey)) || 0;
                     localStorage.setItem(successKey, count + 1);
                     
-                    // ইউজারকে নোটিফিকেশন
                     sendNotification(userId, '✅ আপনার অর্ডার এপ্রুভ হয়েছে!');
                 } else {
                     sendNotification(userId, '❌ আপনার অর্ডার রিজেক্ট হয়েছে।');
@@ -1239,7 +1275,7 @@
             localStorage.setItem(key, JSON.stringify(orders));
             
             // অ্যাডমিনকে নোটিফিকেশন
-            const adminMsg = `🔔 নতুন অর্ডার!\n\n👤 ${formData.username}\n💰 ${formData.amount}\n💵 ${formData.total}`;
+            const adminMsg = `🔔 নতুন অর্ডার!\n\n👤 ${formData.username}\n💰 ${formData.amount}\n📤 ${formData.targetId}\n💵 ${formData.total}`;
             sendNotification(ADMIN_ID, adminMsg);
             
             tg.showAlert('✅ অর্ডার জমা হয়েছে! অ্যাডমিন এপ্রুভ করলে সাকসেস কাউন্ট বাড়বে।');
@@ -1249,10 +1285,16 @@
         // ইউটিলিটি ফাংশন
         function setCoin(coin) {
             currentCoin = coin;
+            
             document.getElementById('coinNiva').classList.remove('selected');
             document.getElementById('coinNs').classList.remove('selected');
             document.getElementById(`coin${coin === 'niva' ? 'Niva' : 'Ns'}`).classList.add('selected');
+            
             document.getElementById('rateDisplay').textContent = coinRates[coin] + '₮';
+            
+            // Target ID আপডেট
+            updateTargetId(coin);
+            
             calculateTotal();
         }
         
